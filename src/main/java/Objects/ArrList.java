@@ -39,13 +39,6 @@ public class ArrList<E> implements IList<E>{
 
     public boolean insert(Object o, int index)
     {
-
-        Object[] arr1 = new Object[index];
-        Object[] arr2 = new Object[list.length - index];
-
-        System.arraycopy(list, 0, arr1, 0, arr1.length);
-        System.arraycopy(list, index, arr2, 0, arr2.length);
-
         Object[] newList = new Object[list.length + 1];
         for(int i = 0, k = 0; i < list.length; i++)
         {
@@ -86,7 +79,6 @@ public class ArrList<E> implements IList<E>{
 
     public boolean removeByIndex(int i) {
 
-        Object r = list[i];
         Object[] neu = new Object [list.length - 1];
         for (int j = 0, k = 0; j < list.length; j++) {
             if (j == i) continue;
