@@ -37,4 +37,8 @@ public class Sektor {
     public void addRegal(Regal... regals){
         this.regale.addMany(regals);
     }
+
+    public void addRegale(ArrList<Regal> regale) {
+        this.regale.addMany(regale);
+    }
 }

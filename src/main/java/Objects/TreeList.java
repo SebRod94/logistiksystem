@@ -33,7 +33,7 @@ public class TreeList<E> implements IList<E>{
     }
 
     @Override
-    public boolean add(Object o) {
+    public boolean add(E o) {
         Element e = new Element(o, null, null);
 
         if(root == null){
@@ -81,7 +81,7 @@ public class TreeList<E> implements IList<E>{
     }
 
     @Override
-    public boolean remove(Object o) {
+    public boolean remove(E o) {
         if (root == null)
             throw new NoSuchElementException();
 
