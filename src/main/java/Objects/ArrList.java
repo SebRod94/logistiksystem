@@ -1,5 +1,6 @@
 package Objects;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ArrList<E> implements IList<E>{
@@ -35,6 +36,12 @@ public class ArrList<E> implements IList<E>{
         }
         list = newList;
         return true;
+    }
+
+    public boolean addMany(ArrList<E> o)
+    {
+        boolean success = addMany(o.toArray());
+        return success;
     }
 
     public boolean insert(Object o, int index)
@@ -102,4 +109,5 @@ public class ArrList<E> implements IList<E>{
     {
         return list;
     }
+
 }

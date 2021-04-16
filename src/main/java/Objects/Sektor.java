@@ -7,19 +7,19 @@ import java.util.Collection;
 public class Sektor {
 
     private double groesse;
-    private Collection<Regal> regale;
+    private ArrList<Regal> regale;
 
     public Sektor(double groesse)
     {
         this.groesse = groesse;
-        this.regale = new ArrayList<>();
+        this.regale = new ArrList<>();
     }
 
-    public Sektor(double groesse, Collection<Regal> regale)
+    public Sektor(double groesse, ArrList<Regal> regale)
     {
         this.groesse = groesse;
-        this.regale = new ArrayList<>();
-        this.regale.addAll(regale);
+        this.regale = new ArrList<>();
+        this.regale.addMany(regale);
     }
 
     public void setGroesse(double groesse) {
@@ -30,11 +30,11 @@ public class Sektor {
         return groesse;
     }
 
-    public Collection<Regal> getRegale() {
+    public ArrList<Regal> getRegale() {
         return regale;
     }
 
     public void addRegal(Regal... regals){
-        this.regale.addAll(Arrays.asList(regals));
+        this.regale.addMany(regals);
     }
 }

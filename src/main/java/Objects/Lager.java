@@ -8,17 +8,17 @@ import java.util.List;
 public class Lager {
 
     private double groesse;
-    private Collection<Sektor> sektoren;
+    private ArrList<Sektor> sektoren;
 
     public Lager(double groesse){
         this.groesse = groesse;
-        this.sektoren = new ArrayList<>();
+        this.sektoren = new ArrList<>();
     }
 
-    public Lager(double groesse, Collection<Sektor> sektors){
+    public Lager(double groesse, ArrList<Sektor> sektors){
         this.groesse = groesse;
-        this.sektoren = new ArrayList<>();
-        this.sektoren.addAll(sektors);
+        this.sektoren = new ArrList<>();
+        this.sektoren.addMany(sektors);
     }
 
     public void setGroessee(double groesse) {
@@ -29,11 +29,11 @@ public class Lager {
         return groesse;
     }
 
-    public Collection<Sektor> getSektoren() {
+    public ArrList<Sektor> getSektoren() {
         return sektoren;
     }
 
     public void addSektoren(Sektor... sektoren) {
-        this.sektoren.addAll(Arrays.asList(sektoren));
+        this.sektoren.addMany(sektoren);
     }
 }
