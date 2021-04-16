@@ -2,7 +2,7 @@ package Objects;
 
 import java.util.NoSuchElementException;
 
-public class TreeList implements ListInterface{
+public class TreeList<E> implements IList<E>{
 
     Element root;
 
@@ -84,6 +84,44 @@ public class TreeList implements ListInterface{
     public boolean remove(Object o) {
         if (root == null)
             throw new NoSuchElementException();
+
+        Element it = root;
+
+        while(it != null)
+        {
+            if(it.left == o)
+            {
+                Element le = it.left.left;
+                Element ri = it.left.right;
+
+                it.left = ri;
+
+                if(it.left.left == null)
+                    it.left.left = le;
+
+                if(it.left.left.hashCode() < le.hashCode())
+                {
+                    Element leM = it.left.left;
+                    while(le != null)
+                    {
+
+
+                    }
+
+                }
+
+
+
+            }
+            else if(it.right == o)
+            {
+                Element le = it.right.left;
+                Element ri = it.right.right;
+
+                it.right = ri;
+
+            }
+        }
 
         return false;
     }
