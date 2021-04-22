@@ -1,15 +1,16 @@
-package Objects;
+package Lists;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ArrList<E> implements IList<E>{
+public class ArrList<E> implements IList<E> {
 
-    Object[] list;
+    private int size = 0;
+    private Object[] list;
+    private static final int DEFAULT_CAPACITY = 10;
 
     public ArrList()
     {
-        list = new Object[0];
+        list = new Object[DEFAULT_CAPACITY];
     }
 
     public ArrList(int length)
@@ -18,23 +19,23 @@ public class ArrList<E> implements IList<E>{
     }
 
     @Override
-    public boolean add(Object o) {
-        Object[] newList = Arrays.copyOf(list, list.length + 1);
-        newList[newList.length - 1] = o;
-        list = newList;
+    public boolean add(E o) {
+        if (size == list.length) {
+            ensureCapacity();
+        }
+        list[size++] = o;
         return true;
     }
 
-    public boolean addMany(Object[] o)
+    public boolean addMany(E[] o)
     {
-        Object[] newList = Arrays.copyOf(list, list.length + o.length);
-        int count = list.length;
         for(Object ob : o)
         {
-            newList[count] = ob;
-            count++;
+            if (size == list.length) {
+                ensureCapacity();
+            }
+            list[size++] = ob;
         }
-        list = newList;
         return true;
     }
 
@@ -46,8 +47,11 @@ public class ArrList<E> implements IList<E>{
 
     public boolean insert(Object o, int index)
     {
-        Object[] newList = new Object[list.length + 1];
-        for(int i = 0, k = 0; i < list.length; i++)
+        if (size == list.length) {
+            ensureCapacity();
+        }
+        Object[] newList = new Object[list.length];
+        for(int i = 0, k = 0; i < size; i++)
         {
             if(i == index)
             {
@@ -63,35 +67,24 @@ public class ArrList<E> implements IList<E>{
 
     @Override
     public int size() {
-        return list.length;
+        return size;
     }
 
     @Override
-    public boolean remove(Object o) {
-
-        Object[] newList = new Object[list.length - 1];
+    public boolean remove(E o) {
         for (int i = 0, k = 0; i < list.length; i++)
         {
-            if(list[i] != o)
-            {
-                if(k > newList.length)
-                    return false;
-                newList[k] = list[i];
-                k++;
-            }
+            if(list[i] == o) continue;
+            list[k++] = list[i];
         }
-        list = newList;
         return true;
     }
 
     public boolean removeByIndex(int i) {
-
-        Object[] neu = new Object [list.length - 1];
         for (int j = 0, k = 0; j < list.length; j++) {
             if (j == i) continue;
-            neu[k++] = list[j];
+            list[k++] = list[j];
         }
-        list = neu;
         return true;
     }
 
@@ -105,9 +98,13 @@ public class ArrList<E> implements IList<E>{
         return false;
     }
 
-    public Object[] toArray()
+    public E[] toArray()
     {
-        return list;
+        return (E[])list;
     }
 
+    private void ensureCapacity() {
+        int newSize = list.length + 10;
+        list = Arrays.copyOf(list, newSize);
+    }
 }

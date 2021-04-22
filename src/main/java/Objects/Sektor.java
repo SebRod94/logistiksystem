@@ -1,11 +1,10 @@
 package Objects;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
+import Lists.ArrList;
 
 public class Sektor {
 
+    private int id;
     private double groesse;
     private ArrList<Regal> regale;
 
@@ -20,6 +19,10 @@ public class Sektor {
         this.groesse = groesse;
         this.regale = new ArrList<>();
         this.regale.addMany(regale);
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setGroesse(double groesse) {

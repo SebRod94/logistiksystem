@@ -1,9 +1,6 @@
 package Objects;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import Lists.ArrList;
 
 public class Lager {
 

@@ -1,14 +1,14 @@
 package Objects;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import Lists.ArrList;
 
 public class Regal {
     /* Eine Produkt-ID pro Regal:*/
-    private ArrList<Produkt> produkte;
-    private double kapazitaet;
     private int id;
+    private double kapazitaet;
     private double stueckzahl;
+    private ArrList<Produkt> produkte;
+
 
     public Regal()
     {
@@ -25,13 +25,12 @@ public class Regal {
 
     public double getKapazitaet() { return kapazitaet; }
 
-    public void setContainedID(int id) { this.id = id; }
-
-    public int getContainedID() { return id; }
+    public int getId() { return id; }
 
     public void setStueckzahl(int stueckzahl) { this.stueckzahl = stueckzahl; }
 
     public double getStueckzahl() { return stueckzahl; }
+
     public ArrList<Produkt> getProdukte() {
         return produkte;
     }

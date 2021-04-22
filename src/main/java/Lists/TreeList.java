@@ -1,8 +1,10 @@
-package Objects;
+package Lists;
+
+import Lists.IList;
 
 import java.util.NoSuchElementException;
 
-public class TreeList<E> implements IList<E>{
+public class TreeList<E> implements IList<E> {
 
     Element root;
 
