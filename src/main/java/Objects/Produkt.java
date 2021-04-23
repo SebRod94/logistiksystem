@@ -6,13 +6,15 @@ public class Produkt {
     private String name;
     private double gewicht;
     private double preis;
+    private int menge;
 
-    public Produkt(int id, String name, double gewicht, double preis)
+    public Produkt(int id, String name, double gewicht, double preis, int menge)
     {
         this.id = id;
         this.name = name;
         this.gewicht = gewicht;
         this.preis = preis;
+        this.menge = menge;
     }
 
     public void setId(int id) {
