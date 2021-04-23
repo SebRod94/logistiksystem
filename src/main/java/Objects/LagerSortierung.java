@@ -7,8 +7,6 @@ public class LagerSortierung {
     public static void sort(Produkt produkt, Lager lager)
     {
         int id = produkt.getId();
-        
-        ArrayList<Sektor> sektors = new ArrayList<>();
 
         for (Sektor sektor : lager.getSektoren().toArray()) {
             if(compare(id, sektor.getId(), 0,1) == true)
