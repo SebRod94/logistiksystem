@@ -4,6 +4,7 @@ import Lists.ArrList;
 
 public class Lager {
 
+    private String lagername;
     private double groesse;
     private ArrList<Sektor> sektoren;
 

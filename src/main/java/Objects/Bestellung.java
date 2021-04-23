@@ -8,7 +8,6 @@ public class Bestellung {
     private int bestNr;
     private String orderTime;
     private int[] orderedIDs;
-    private boolean stornoStatus = false;
 
     public Bestellung (int[] orderedIDs){
         this.bestNr = orderCnt;
@@ -17,13 +16,7 @@ public class Bestellung {
         this.orderedIDs = orderedIDs;
     }
 
-    public void storno () {
-        this.stornoStatus = true;
-
-    }
-
     public int getBestNr() { return bestNr; }
     public String getOrderTime() { return orderTime; }
     public int[] getOrderedIDs() { return orderedIDs; }
-    public boolean getStornoStatus() { return stornoStatus; }
 }
