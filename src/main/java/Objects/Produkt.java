@@ -4,16 +4,18 @@ public class Produkt {
 
     private int id;
     private String name;
-    private double gewicht;
-    private double preis;
+    private int groesse;
+    private double ekPreis;
+    private double vkPreis;
     private int menge;
 
-    public Produkt(int id, String name, double gewicht, double preis, int menge)
+    public Produkt(int id, String name, int groesse, double ekPreis, double vkPreis, int menge)
     {
         this.id = id;
         this.name = name;
-        this.gewicht = gewicht;
-        this.preis = preis;
+        this.groesse = groesse;
+        this.ekPreis = ekPreis;
+        this.vkPreis = vkPreis;
         this.menge = menge;
     }
 
@@ -33,19 +35,23 @@ public class Produkt {
         return name;
     }
 
-    public void setGewicht(double gewicht) {
-        this.gewicht = gewicht;
+    public void setGroesse(int groesse) {
+        this.groesse = groesse;
     }
 
-    public double getGewicht() {
-        return gewicht;
+    public int getGroesse() {
+        return groesse;
     }
 
-    public void setPreis(double preis) {
-        this.preis = preis;
+    public void setEkPreis(double ekPreis) {
+        this.ekPreis = ekPreis;
     }
 
-    public double getPreis() {
-        return preis;
+    public double getEkPreis() {
+        return ekPreis;
     }
+
+    public void setVkPreis(double vkPreis) { this.vkPreis = vkPreis; }
+
+    public double getVkPreis() { return vkPreis; }
 }
