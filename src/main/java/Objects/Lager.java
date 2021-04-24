@@ -4,22 +4,27 @@ import Lists.ArrList;
 
 public class Lager {
 
+    private int id;
     private String name;
     private int groesse;
     private ArrList<Sektor> sektoren;
 
-    public Lager(String name, int groesse){
+    public Lager(int id, String name, int groesse){
+        this.id = id;
         this.name = name;
         this.groesse = groesse;
         this.sektoren = new ArrList<>();
     }
 
-    public Lager(String name, int groesse, ArrList<Sektor> sektors){
+    public Lager(int id, String name, int groesse, ArrList<Sektor> sektors){
+        this.id = id;
         this.name = name;
         this.groesse = groesse;
         this.sektoren = new ArrList<>();
         this.sektoren.addMany(sektors);
     }
+
+    public int getId() { return id ;}
 
     public void setName(String name) { this.name = name; }
 

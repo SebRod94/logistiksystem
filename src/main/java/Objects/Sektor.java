@@ -20,6 +20,13 @@ public class Sektor {
         this.regale.addMany(regale);
     }
 
+    public Sektor (int groesse, ArrList<Regal> regale, Kategorie kategorie) {
+        this.groesse = groesse;
+        this.regale = new ArrList<>();
+        this.regale.addMany(regale);
+        this.kategorie = kategorie;
+    }
+
     public int getId() {
         return id;
     }
@@ -31,6 +38,10 @@ public class Sektor {
     public int getGroesse() {
         return groesse;
     }
+
+    public void setKategorie(Kategorie kategorie) { this.kategorie = kategorie; }
+
+    public Kategorie getKategorie() { return kategorie; }
 
     public ArrList<Regal> getRegale() {
         return regale;
