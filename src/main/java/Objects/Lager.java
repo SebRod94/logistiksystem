@@ -2,6 +2,8 @@ package Objects;
 
 import Lists.ArrList;
 
+import java.util.NoSuchElementException;
+
 public class Lager {
 
     private int id;
@@ -48,6 +50,18 @@ public class Lager {
 
     public ArrList<Sektor> getSektoren() {
         return sektoren;
+    }
+
+    public void addSektor(Sektor sektor){
+        int auslastung = 0;
+        for (Sektor s : this.getSektoren().toArray()){
+            auslastung = auslastung + s.getGroesse();
+        }
+        if (groesse>auslastung+sektor.getGroesse()){
+            this.sektoren.add(sektor);
+        } else {
+            throw new NoSuchElementException("Kapazität überschritten. \n Erforderliche Kapazität: "+ sektor.getGroesse() + "\n Vorhandene Kapazität: " + (groesse-auslastung));
+        }
     }
 
     public void addSektoren(Sektor... sektoren) {

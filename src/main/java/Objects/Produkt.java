@@ -2,6 +2,7 @@ package Objects;
 
 import Lists.ArrList;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Produkt {
@@ -44,10 +45,11 @@ public class Produkt {
             for (Sektor s : l.getSektoren().toArray()) {
                 if (s.getKategorie() == gewaehlteKat) {
                     for (Regal r : s.getRegale().toArray()) {
-                        if (r.getKapazitaet() - r.getAuslastung() >= menge) {
+                        if (r.getKapazitaet() - r.getAuslastung() >= menge*groesse) {
                             zielLagerID = l.getId();
                             zielSektorID = s.getId();
                             zielRegalID = r.getId();
+                            r.addProdukt(this);
                             break;
                         }
                     }
@@ -56,7 +58,7 @@ public class Produkt {
             }
             break;
         }
-        prodCnt ++;
+        prodCnt++;
 
         String strLagerID = Integer.toString(zielLagerID);
         String strSektorID = Integer.toString(zielSektorID);
@@ -71,6 +73,15 @@ public class Produkt {
         String strProduktID = strLagerID + strSektorID + strRegalID + strProdCnt;
 
         this.id = Integer.parseInt(strProduktID);
+
+
+    }
+    public int getMenge(){
+        return menge;
+    }
+
+    public void setMenge(int menge){
+        this.menge = menge;
     }
 
     public void setId(int id) {
