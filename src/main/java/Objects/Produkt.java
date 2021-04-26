@@ -22,12 +22,13 @@ public class Produkt {
         this.vkPreis = vkPreis;
         this.menge = menge;
 
-        Scanner scanner = new Scanner(System.in);
+        //ID-Ermittlung
         System.out.printf("Zu welcher Kategorie gehört das Produkt? Bitte Nummer eintippen:%n%n");
         Kategorie[] kategorien = Kategorie.values();
         for(Kategorie k : kategorien) {
             System.out.println(k.ordinal() + " " + k);
         }
+        Scanner scanner = new Scanner(System.in);
         int index = Integer.parseInt(scanner.nextLine());
         scanner.close();
         Kategorie gewaehlteKat = kategorien[index];
@@ -60,7 +61,12 @@ public class Produkt {
         String strLagerID = Integer.toString(zielLagerID);
         String strSektorID = Integer.toString(zielSektorID);
         String strRegalID = Integer.toString(zielRegalID);
-        String strProdCnt = Integer.toString(prodCnt);
+        String strProdCnt;
+        if (prodCnt < 10) {
+            strProdCnt = "0" + Integer.toString(prodCnt);
+        } else {
+            strProdCnt = Integer.toString(prodCnt);
+        }
 
         String strProduktID = strLagerID + strSektorID + strRegalID + strProdCnt;
 

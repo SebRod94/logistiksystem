@@ -3,14 +3,14 @@ package Objects;
 public class Lageruebersicht {
     private static Lager[] alleLager = new Lager[3];
 
-    public static void addLager(Lager lager1) throws Exception {
+    public static void addLager(Lager lager) throws Exception {
         if (alleLager[alleLager.length - 1] != null) {
             throw new Exception("Maximale Zahl an Lagern bereits erreicht.");
         } else {
-            for (Lager l : alleLager) {
-                if (l == null) {
-                    l = lager1;
-                    break;
+            for (int i = 0; i < alleLager.length; i++ ) {
+                if (alleLager[i] == null) {
+                    alleLager[i] = lager;
+                    return;
                 }
             }
         }

@@ -1,5 +1,4 @@
-import Objects.Lager;
-import Objects.Produkt;
+import Objects.*;
 
 public class Main {
 
@@ -8,6 +7,6 @@ public class Main {
         Lager lager2 = new Lager(2,"Nebenlager", 55);
         Lager lager3 = new Lager(3,"Kellerlager", 40);
 
-        Produkt test = new Produkt("wurst", 2, 5,6, 1);
+        for (Lager l: Lageruebersicht.getAlleLager()) { System.out.println(l); }
     }
 }

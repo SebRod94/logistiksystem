@@ -14,6 +14,14 @@ public class Lager {
         this.name = name;
         this.groesse = groesse;
         this.sektoren = new ArrList<>();
+
+
+
+        try {
+            Lageruebersicht.addLager(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public Lager(int id, String name, int groesse, ArrList<Sektor> sektors){
