@@ -47,17 +47,12 @@ public class Regal {
         return produkte;
     }
 
-    public void addProdukt(Produkt produkt) throws KapazitaetErreichtException{
-        if(auslastung >= kapazitaet)
-            throw new KapazitaetErreichtException("Regal ist voll! Kann keine weiteren Produkte hinzufügen.");
-        if(auslastung + produkt.getGroesse() > kapazitaet)
-            throw new KapazitaetErreichtException("Produkt ist zu groß, bitte in ein anderes Regal legen.");
-
+    public void addProdukt(Produkt produkt){
         this.produkte.add(produkt);
         auslastung = getAuslastung()+(produkt.getMenge()*produkt.getGroesse());
     }
 
-    public void addProdukte(Produkt... produkte) throws KapazitaetErreichtException
+    public void addProdukte(Produkt... produkte)
     {
         for(Produkt produkt : produkte)
             addProdukt(produkt);

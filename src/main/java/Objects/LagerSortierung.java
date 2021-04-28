@@ -16,13 +16,7 @@ public class LagerSortierung {
                 {
                     if(compare(id, regal.getId(), 2,3) == true)
                     {
-                        try{
-                            regal.addProdukte(produkt);
-                        }
-                        catch (KapazitaetErreichtException ex)
-                        {
-
-                        }
+                        regal.addProdukte(produkt);
                     }
                 }
             }
