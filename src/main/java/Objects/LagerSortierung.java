@@ -1,11 +1,12 @@
 package Objects;
 
+import Exceptions.KapazitaetErreichtException;
+
 import java.util.ArrayList;
 
 public class LagerSortierung {
 
-    public static void sort(Produkt produkt, Lager lager)
-    {
+    public static void sort(Produkt produkt, Lager lager)  {
         int id = produkt.getId();
 
         for (Sektor sektor : lager.getSektoren().toArray()) {
@@ -15,7 +16,13 @@ public class LagerSortierung {
                 {
                     if(compare(id, regal.getId(), 2,3) == true)
                     {
-                        regal.addProdukte(produkt);
+                        try{
+                            regal.addProdukte(produkt);
+                        }
+                        catch (KapazitaetErreichtException ex)
+                        {
+
+                        }
                     }
                 }
             }

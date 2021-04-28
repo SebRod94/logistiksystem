@@ -98,6 +98,11 @@ public class ArrList<E> implements IList<E> {
         return false;
     }
 
+    public E get(int index)
+    {
+        return (E)list[index];
+    }
+
     public E[] toArray()
     {
         return (E[])list;
