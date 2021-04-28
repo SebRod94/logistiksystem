@@ -45,7 +45,7 @@ public class ArrList<E> implements IList<E> {
         return success;
     }
 
-    public boolean insert(Object o, int index)
+    public void insert(Object o, int index)
     {
         if (size == list.length) {
             ensureCapacity();
@@ -62,7 +62,6 @@ public class ArrList<E> implements IList<E> {
             k++;
         }
         list = newList;
-        return true;
     }
 
     @Override
@@ -71,21 +70,29 @@ public class ArrList<E> implements IList<E> {
     }
 
     @Override
-    public boolean remove(E o) {
+    public E remove(E o) {
+        Object removedElement = null;
         for (int i = 0, k = 0; i < list.length; i++)
         {
-            if(list[i] == o) continue;
+            if(list[i] == o) {
+                removedElement = list[i];
+                continue;
+            }
             list[k++] = list[i];
         }
-        return true;
+        return (E)removedElement;
     }
 
-    public boolean removeByIndex(int i) {
+    public E removeByIndex(int i) {
+        Object removedElement = null;
         for (int j = 0, k = 0; j < list.length; j++) {
-            if (j == i) continue;
+            if (j == i) {
+                removedElement = list[i];
+                continue;
+            }
             list[k++] = list[j];
         }
-        return true;
+        return (E)removedElement;
     }
 
     @Override

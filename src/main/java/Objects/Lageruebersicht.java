@@ -1,5 +1,7 @@
 package Objects;
 
+import Lists.ProdukteBaum;
+
 public class Lageruebersicht {
     private static Lager[] alleLager = new Lager[3];
 
@@ -17,4 +19,18 @@ public class Lageruebersicht {
     }
 
     public static Lager[] getAlleLager(){ return alleLager; }
+
+    public static ProdukteBaum getAllProdukts()
+    {
+        ProdukteBaum produkteBaum = new ProdukteBaum();
+
+        for(Lager lager : alleLager)
+            for(Sektor sektor : lager.getSektoren().toArray())
+                for(Regal regal : sektor.getRegale().toArray())
+                {
+                    produkteBaum.addMany(regal.getProdukte().toArray());
+                }
+
+        return produkteBaum;
+    }
 }
