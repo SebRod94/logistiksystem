@@ -2,11 +2,12 @@ package Objects;
 
 import Lists.ArrList;
 
+import java.util.NoSuchElementException;
+
 public class Regal {
-    /* Eine Produkt-ID pro Regal:*/
     private int id;
-    private double kapazitaet;
-    private double stueckzahl;
+    private int kapazitaet;
+    private int auslastung;
     private ArrList<Produkt> produkte;
 
 
@@ -15,24 +16,39 @@ public class Regal {
         this.produkte = new ArrList<>();
     }
 
-    public Regal (double kapazitaet, ArrList<Produkt> produkte)
+    public Regal (int kapazitaet, ArrList<Produkt> produkte)
     {
         this.kapazitaet = kapazitaet;
         this.produkte = produkte;
     }
 
-    public void setKapazitaet(double kapazitaet) { this.kapazitaet = kapazitaet; }
+    public void setKapazitaet(int kapazitaet) {
+        this.kapazitaet = kapazitaet;
+    }
 
-    public double getKapazitaet() { return kapazitaet; }
+    public int getKapazitaet() {
+        return kapazitaet;
+    }
 
-    public int getId() { return id; }
+    public void setAuslastung(int auslastung) {
+        this.auslastung = auslastung;
+    }
 
-    public void setStueckzahl(int stueckzahl) { this.stueckzahl = stueckzahl; }
+    public int getAuslastung() {
+        return auslastung;
+    }
 
-    public double getStueckzahl() { return stueckzahl; }
+    public int getId() {
+        return id;
+    }
 
     public ArrList<Produkt> getProdukte() {
         return produkte;
+    }
+
+    public void addProdukt(Produkt produkt){
+        this.produkte.add(produkt);
+        auslastung = getAuslastung()+(produkt.getMenge()*produkt.getGroesse());
     }
 
     public void addProdukte(Produkt... produkte)

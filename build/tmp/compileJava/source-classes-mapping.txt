@@ -1,7 +1,7 @@
 Lists/ArrList.java
  Lists.ArrList
-Objects/LagerSortierung.java
- Objects.LagerSortierung
+Objects/Regal.java
+ Objects.Regal
 Objects/Sektor.java
  Objects.Sektor
 Lists/IList.java
@@ -10,18 +10,20 @@ Objects/Bestellung.java
  Objects.Bestellung
 Objects/Lager.java
  Objects.Lager
-Main.java
- Main
+Objects/Versand.java
+ Objects.Versand
 Objects/Finanzen.java
  Objects.Finanzen
 Objects/Personal.java
  Objects.Personal
+Objects/Kategorie.java
+ Objects.Kategorie
 Lists/TreeList.java
  Lists.TreeList
  Lists.TreeList$Element
-Objects/Versand.java
- Objects.Versand
-Objects/Regal.java
- Objects.Regal
+Main.java
+ Main
+Objects/LagerSortierung.java
+ Objects.LagerSortierung
 Objects/Produkt.java
  Objects.Produkt
