@@ -23,7 +23,13 @@ public class Produkt {
         this.vkPreis = vkPreis;
         this.menge = menge;
 
-        //ID-Ermittlung
+        this.initialize();
+    }
+
+    public void initialize() {
+
+        //ID-Ermittlung und Produkt zu Regal hinzufügen
+
         System.out.printf("Zu welcher Kategorie gehört das Produkt? Bitte Nummer eintippen:%n%n");
         Kategorie[] kategorien = Kategorie.values();
         for(Kategorie k : kategorien) {
@@ -73,9 +79,8 @@ public class Produkt {
         String strProduktID = strLagerID + strSektorID + strRegalID + strProdCnt;
 
         this.id = Integer.parseInt(strProduktID);
-
-
     }
+
     public int getMenge(){
         return menge;
     }

@@ -1,6 +1,5 @@
 package Objects;
 
-import Exceptions.KapazitaetErreichtException;
 import Lists.ArrList;
 
 import java.util.NoSuchElementException;
