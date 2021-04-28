@@ -8,8 +8,9 @@ Lists/IList.java
  Lists.IList
 Objects/Bestellung.java
  Objects.Bestellung
-Objects/Lager.java
- Objects.Lager
+Lists/TreeList.java
+ Lists.TreeList
+ Lists.TreeList$Element
 Objects/Versand.java
  Objects.Versand
 Objects/Finanzen.java
@@ -18,12 +19,13 @@ Objects/Personal.java
  Objects.Personal
 Objects/Kategorie.java
  Objects.Kategorie
-Lists/TreeList.java
- Lists.TreeList
- Lists.TreeList$Element
-Main.java
- Main
 Objects/LagerSortierung.java
  Objects.LagerSortierung
+Objects/Lager.java
+ Objects.Lager
+Main.java
+ Main
+Objects/Lageruebersicht.java
+ Objects.Lageruebersicht
 Objects/Produkt.java
  Objects.Produkt
