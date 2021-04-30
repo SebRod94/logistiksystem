@@ -1,6 +1,10 @@
-package Objects;
+package Verarbeitung;
 
 import Exceptions.KapazitaetErreichtException;
+import Objects.Lager;
+import Objects.Produkt;
+import Objects.Regal;
+import Objects.Sektor;
 
 import java.util.ArrayList;
 
