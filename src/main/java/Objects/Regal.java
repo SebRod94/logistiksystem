@@ -47,11 +47,15 @@ public class Regal {
     }
 
     public void addProdukt(Produkt produkt){
-        this.produkte.add(produkt);
-        auslastung = getAuslastung()+(produkt.getMenge()*produkt.getGroesse());
+        if (this.auslastung< (produkt.getMenge()*produkt.getGroesse())) {
+            this.produkte.add(produkt);
+            this.auslastung = getAuslastung() + (produkt.getMenge() * produkt.getGroesse());
+        }else {
+            throw new NoSuchElementException("Kapazität überschritten. \n Erforderliche Kapazität: "+ produkt.getGroesse()*produkt.getMenge() + "\n Vorhandene Kapazität: " + (kapazitaet-auslastung));
+        }
     }
 
-    public void addProdukte(Produkt... produkte)
+    public void addProdukte (Produkt... produkte)
     {
         for(Produkt produkt : produkte)
             addProdukt(produkt);

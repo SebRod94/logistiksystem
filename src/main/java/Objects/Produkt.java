@@ -3,6 +3,7 @@ package Objects;
 import Lists.ArrList;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Produkt {
@@ -15,13 +16,17 @@ public class Produkt {
     private double vkPreis;
     private int menge;
 
-    public Produkt(String name, int groesse, double ekPreis, double vkPreis, int menge)
+    public Produkt(String name, int groesse, double ekPreis, double vkPreis, int menge) throws Exception
     {
         this.name = name;
-        this.groesse = groesse;
         this.ekPreis = ekPreis;
         this.vkPreis = vkPreis;
         this.menge = menge;
+        if (groesse<=4){
+            this.groesse = groesse;
+        } else {
+            throw new Exception("Größe darf nicht größer als Vier sein!");
+        }
 
         this.initialize();
     }
