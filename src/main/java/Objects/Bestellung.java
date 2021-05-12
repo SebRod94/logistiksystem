@@ -8,6 +8,8 @@ public class Bestellung {
     private int bestNr;
     private String orderTime;
     private int[] orderedIDs;
+    int auslastung;
+    int id;
 
     public Bestellung (int[] orderedIDs){
         this.bestNr = orderCnt;
@@ -19,4 +21,21 @@ public class Bestellung {
     public int getBestNr() { return bestNr; }
     public String getOrderTime() { return orderTime; }
     public int[] getOrderedIDs() { return orderedIDs; }
-}
+
+    public int getAuslastung() {
+        return auslastung;
+    }
+    public int getId(){return id; }
+
+    public void Nachbestellung(Bestellung bestellung){
+        auslastung = getAuslastung();
+        id = getId();
+        if (auslastung<=5){
+
+        }
+        }
+    }
+
+
+
+

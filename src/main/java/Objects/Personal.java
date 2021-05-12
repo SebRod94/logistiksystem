@@ -1,5 +1,7 @@
 package Objects;
 
+import java.util.HashMap;
+
 public class Personal {
 
     private String name;
@@ -35,5 +37,14 @@ public class Personal {
     public String getStelle() {
         return stelle;
     }
+
+    /** Map
+    public map(){
+        Map<Person,Person> vorgesetzte = new HashMap<>();
+
+        Person chef = new Person("Maria");
+    }
+
+    */
 }
 
