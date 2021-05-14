@@ -47,6 +47,8 @@ public class ArrList<E> implements IList<E> {
 
     public void insert(Object o, int index)
     {
+        if(index > size)
+            throw new ArrayIndexOutOfBoundsException();
         if (size == list.length) {
             ensureCapacity();
         }
