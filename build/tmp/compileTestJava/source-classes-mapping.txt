@@ -2,3 +2,5 @@ test1.java
  test1
 ListTests/ArrListTest.java
  ListTests.ArrListTest
+ListTests/ProdukteBaumTest.java
+ ListTests.ProdukteBaumTest
