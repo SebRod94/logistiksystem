@@ -31,7 +31,7 @@ public class Produkt {
         this.initialize();
     }
 
-    public void initialize() {
+    private void initialize() {
 
         //ID-Ermittlung und Produkt zu Regal hinzufügen
 

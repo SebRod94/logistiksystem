@@ -17,6 +17,12 @@ public class Regal {
         this.produkte = produkte;
     }
 
+    public Regal (int kapazitaet)
+    {
+        this.kapazitaet = kapazitaet;
+        this.produkte = new ArrList<Produkt>();
+    }
+
     public void setKapazitaet(int kapazitaet) {
         this.kapazitaet = kapazitaet;
     }

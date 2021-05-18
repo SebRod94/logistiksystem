@@ -4,6 +4,7 @@ import Exceptions.KapazitaetErreichtException;
 import Lists.ArrList;
 
 import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 public class Sektor {
 
@@ -12,11 +13,12 @@ public class Sektor {
     private Kategorie kategorie;
     private ArrList<Regal> regale;
 
-    public Sektor (int groesse, ArrList<Regal> regale, Kategorie kategorie) {
+    public Sektor (int groesse, Kategorie kategorie) {
         this.groesse = groesse;
         this.regale = new ArrList<>();
-        this.regale.addMany(regale);
         this.kategorie = kategorie;
+
+        Regal regal1 = new Regal(10);
     }
 
     public int getId() {
