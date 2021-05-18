@@ -1,5 +1,6 @@
 package Objects;
 
+import Exceptions.KapazitaetErreichtException;
 import Lists.ProdukteBaum;
 
 public class Lageruebersicht {
@@ -7,7 +8,7 @@ public class Lageruebersicht {
 
     public static void addLager(Lager lager) throws Exception {
         if (alleLager[alleLager.length - 1] != null) {
-            throw new Exception("Maximale Zahl an Lagern bereits erreicht.");
+            throw new KapazitaetErreichtException("Maximale Zahl an Lagern bereits erreicht.");
         } else {
             for (int i = 0; i < alleLager.length; i++ ) {
                 if (alleLager[i] == null) {
