@@ -11,11 +11,6 @@ public class Regal {
     private ArrList<Produkt> produkte;
 
 
-    public Regal()
-    {
-        this.produkte = new ArrList<>();
-    }
-
     public Regal (int kapazitaet, ArrList<Produkt> produkte)
     {
         this.kapazitaet = kapazitaet;

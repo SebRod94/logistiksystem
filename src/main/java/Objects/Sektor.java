@@ -1,5 +1,6 @@
 package Objects;
 
+import Exceptions.KapazitaetErreichtException;
 import Lists.ArrList;
 
 import java.util.NoSuchElementException;
@@ -10,17 +11,6 @@ public class Sektor {
     private int groesse;
     private Kategorie kategorie;
     private ArrList<Regal> regale;
-
-    public Sektor(int groesse) {
-        this.groesse = groesse;
-        this.regale = new ArrList<>();
-    }
-
-    public Sektor(int groesse, ArrList<Regal> regale) {
-        this.groesse = groesse;
-        this.regale = new ArrList<>();
-        this.regale.addMany(regale);
-    }
 
     public Sektor (int groesse, ArrList<Regal> regale, Kategorie kategorie) {
         this.groesse = groesse;
@@ -49,7 +39,7 @@ public class Sektor {
         return regale;
     }
 
-    public void addRegal(Regal regal){
+    public void addRegal(Regal regal) throws KapazitaetErreichtException {
         int auslastung=0;
         for (Regal r : this.getRegale().toArray()){
             auslastung= auslastung + r.getKapazitaet();
@@ -57,7 +47,7 @@ public class Sektor {
         if (groesse>auslastung+regal.getKapazitaet()) {
             this.regale.add(regal);
         } else {
-            throw new NoSuchElementException("Kapazität überschritten. \n Erforderliche Kapazität: "+ regal.getKapazitaet() + "\n Vorhandene Kapazität: " + (groesse-auslastung));
+            throw new KapazitaetErreichtException("Kapazität überschritten. \n Zusätzlich benötigte Kapazität: "+ (regal.getKapazitaet() - (groesse-auslastung)) + "\n Vorhandene Kapazität: " + (groesse-auslastung));
         }
 
         }
