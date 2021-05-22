@@ -1,10 +1,10 @@
 package Objects;
 
-import Lists.ArrList;
+import Exceptions.KapazitaetErreichtException;
+import Exceptions.KeinRegalException;
 
-import java.util.Arrays;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
+
 
 public class Produkt {
 
@@ -16,8 +16,7 @@ public class Produkt {
     private double vkPreis;
     private int menge;
 
-    public Produkt(String name, int groesse, double ekPreis, double vkPreis, int menge) throws Exception
-    {
+    public Produkt(String name, int groesse, double ekPreis, double vkPreis, int menge) throws IllegalArgumentException, KeinRegalException, KapazitaetErreichtException {
         this.name = name;
         this.ekPreis = ekPreis;
         this.vkPreis = vkPreis;
@@ -25,13 +24,13 @@ public class Produkt {
         if (groesse<=4){
             this.groesse = groesse;
         } else {
-            throw new Exception("Größe darf nicht größer als Vier sein!");
+            throw new IllegalArgumentException("Größe darf nicht größer als Vier sein!");
         }
 
         this.initialize();
     }
 
-    private void initialize() {
+    private void initialize() throws KapazitaetErreichtException, KeinRegalException {
 
         //ID-Ermittlung und Produkt zu Regal hinzufügen
 
@@ -42,48 +41,84 @@ public class Produkt {
         }
         Scanner scanner = new Scanner(System.in);
         int index = Integer.parseInt(scanner.nextLine());
-        scanner.close();
         Kategorie gewaehlteKat = kategorien[index];
+        scanner.close();
 
         Lager[] alleLager = new Lager[Lageruebersicht.getAlleLager().length];
         alleLager = Lageruebersicht.getAlleLager();
 
         int zielLagerID = 0;
         int zielSektorID = 0;
+        Sektor zielSektor = null;
         int zielRegalID = 0;
+        Regal reg = null;
+        boolean regalGefunden = false;
+        
+        try {
+            for (Lager l : alleLager) {
+                for (Sektor s : l.getSektoren().toArray()) {
+                    if (s.getKategorie() == gewaehlteKat) {
 
-        for(Lager l : alleLager) {
-            for (Sektor s : l.getSektoren().toArray()) {
-                if (s.getKategorie() == gewaehlteKat) {
-                    for (Regal r : s.getRegale().toArray()) {
-                        if (r.getKapazitaet() - r.getAuslastung() >= menge*groesse) {
-                            zielLagerID = l.getId();
-                            zielSektorID = s.getId();
-                            zielRegalID = r.getId();
-                            r.addProdukt(this);
-                            break;
+                        zielLagerID = l.getId();
+                        zielSektorID = s.getId();
+                        zielSektor = s;
+                        
+                        for (Regal r : s.getRegale().toArray()) {
+                            if (r.getKapazitaet() - r.getAuslastung() >= menge * groesse) {
+                                zielRegalID = r.getId();
+                                r.addProdukt(this);
+                                regalGefunden = true;
+                                break;
+                            }
                         }
+                        break;
                     }
-                    break;
                 }
+                break;
             }
-            break;
+
+            if (regalGefunden == false) {
+                throw new KapazitaetErreichtException("Kein Regalplatz verfügbar.");
+            }
+
+        } catch (KapazitaetErreichtException e) {
+            e.printStackTrace();
+
+            Scanner s = new Scanner(System.in);
+            String createNew = s.nextLine();
+            System.out.println("Soll ein neues Regal geschaffen werden? (y / n)");
+
+            if (createNew == "y" ) {
+                System.out.println("Bitte Kapazität eingeben:");
+                int wunschKapazitaet = s.nextInt();
+                s.close();
+                Regal r = new Regal(wunschKapazitaet);
+                zielSektor.addRegal(r);
+            } else {
+                throw new KeinRegalException("Produkt kann nicht hinzugefügt werden, da vorhandene Regale nicht genügend Platz bieten.");
+            }
+
+            zielRegalID = reg.getId();
+            reg.addProdukt(this);
+
+        } finally {
+
+            prodCnt++;
+
+            String strLagerID = Integer.toString(zielLagerID);
+            String strSektorID = Integer.toString(zielSektorID);
+            String strRegalID = Integer.toString(zielRegalID);
+            String strProdCnt;
+            if (prodCnt < 10) {
+                strProdCnt = "0" + Integer.toString(prodCnt);
+            } else {
+                strProdCnt = Integer.toString(prodCnt);
+            }
+
+            String strProduktID = strLagerID + strSektorID + strRegalID + strProdCnt;
+
+            this.id = Integer.parseInt(strProduktID);
         }
-        prodCnt++;
-
-        String strLagerID = Integer.toString(zielLagerID);
-        String strSektorID = Integer.toString(zielSektorID);
-        String strRegalID = Integer.toString(zielRegalID);
-        String strProdCnt;
-        if (prodCnt < 10) {
-            strProdCnt = "0" + Integer.toString(prodCnt);
-        } else {
-            strProdCnt = Integer.toString(prodCnt);
-        }
-
-        String strProduktID = strLagerID + strSektorID + strRegalID + strProdCnt;
-
-        this.id = Integer.parseInt(strProduktID);
     }
 
     public int getMenge(){

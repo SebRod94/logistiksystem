@@ -13,12 +13,14 @@ public class Sektor {
     private Kategorie kategorie;
     private ArrList<Regal> regale;
 
-    public Sektor (int groesse, Kategorie kategorie) {
+    public Sektor (int groesse, Kategorie kategorie) throws KapazitaetErreichtException {
         this.groesse = groesse;
         this.regale = new ArrList<>();
         this.kategorie = kategorie;
 
         Regal regal1 = new Regal(10);
+
+        this.addRegal(regal1);
     }
 
     public int getId() {
@@ -49,7 +51,7 @@ public class Sektor {
         if (groesse>auslastung+regal.getKapazitaet()) {
             this.regale.add(regal);
         } else {
-            throw new KapazitaetErreichtException("Kapazität überschritten. \n Zusätzlich benötigte Kapazität: "+ (regal.getKapazitaet() - (groesse-auslastung)) + "\n Vorhandene Kapazität: " + (groesse-auslastung));
+            throw new KapazitaetErreichtException("Sektorkapazität überschritten. \n Zusätzlich benötigte Kapazität: "+ (regal.getKapazitaet() - (groesse-auslastung)) + "\n Vorhandene Kapazität: " + (groesse-auslastung));
         }
 
         }

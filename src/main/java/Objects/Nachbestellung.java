@@ -2,8 +2,8 @@ package Objects;
 
 public class Nachbestellung {
     public Nachbestellung (Produkt s){
-        int meng = s.getMenge();
-        if (meng <= 1){
+        int menge = s.getMenge();
+        if (menge <= 1){
 
         }
 

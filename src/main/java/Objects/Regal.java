@@ -5,23 +5,26 @@ import Lists.ArrList;
 import java.util.NoSuchElementException;
 
 public class Regal {
+    private static int regalCnt = 0;
     private int id;
     private int kapazitaet;
     private int auslastung;
     private ArrList<Produkt> produkte;
 
 
-    public Regal (int kapazitaet, ArrList<Produkt> produkte)
-    {
+    public Regal (int kapazitaet, ArrList<Produkt> produkte) {
         this.kapazitaet = kapazitaet;
         this.produkte = produkte;
+        regalCnt++;
     }
 
-    public Regal (int kapazitaet)
-    {
+    public Regal (int kapazitaet) {
         this.kapazitaet = kapazitaet;
         this.produkte = new ArrList<Produkt>();
+        regalCnt++;
     }
+
+    public static int getRegalCnt() { return regalCnt; }
 
     public void setKapazitaet(int kapazitaet) {
         this.kapazitaet = kapazitaet;
