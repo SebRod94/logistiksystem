@@ -7,7 +7,7 @@ import Objects.Regal;
 import Objects.Sektor;
 
 import java.util.ArrayList;
-
+/*
 public class LagerSortierung {
 
     public static void sort(Produkt produkt, Lager lager)  {
@@ -40,3 +40,4 @@ public class LagerSortierung {
         return true;
     }
 }
+*/

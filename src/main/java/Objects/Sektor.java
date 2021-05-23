@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class Sektor {
 
+    private static int sektorCnt = 1;
     private int id;
     private int groesse;
     private Kategorie kategorie;
@@ -17,6 +18,7 @@ public class Sektor {
         this.groesse = groesse;
         this.regale = new ArrList<>();
         this.kategorie = kategorie;
+        this.id = sektorCnt;
 
         Regal regal1 = new Regal(10);
 
@@ -51,7 +53,7 @@ public class Sektor {
         if (groesse>auslastung+regal.getKapazitaet()) {
             this.regale.add(regal);
         } else {
-            throw new KapazitaetErreichtException("Sektorkapazität überschritten. \n Zusätzlich benötigte Kapazität: "+ (regal.getKapazitaet() - (groesse-auslastung)) + "\n Vorhandene Kapazität: " + (groesse-auslastung));
+            throw new KapazitaetErreichtException("Sektorkapazität überschritten. \n Zusätzlich benötigte Kapazität: " + (regal.getKapazitaet() - (groesse-auslastung)) + "\n Vorhandene Kapazität: " + (groesse-auslastung));
         }
 
         }

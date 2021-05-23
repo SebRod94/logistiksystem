@@ -5,7 +5,7 @@ import Lists.ArrList;
 import java.util.NoSuchElementException;
 
 public class Regal {
-    private static int regalCnt = 0;
+    private static int regalCnt = 1;
     private int id;
     private int kapazitaet;
     private int auslastung;
@@ -15,12 +15,14 @@ public class Regal {
     public Regal (int kapazitaet, ArrList<Produkt> produkte) {
         this.kapazitaet = kapazitaet;
         this.produkte = produkte;
+        this.id = regalCnt;
         regalCnt++;
     }
 
     public Regal (int kapazitaet) {
         this.kapazitaet = kapazitaet;
         this.produkte = new ArrList<Produkt>();
+        this.id = regalCnt;
         regalCnt++;
     }
 
@@ -55,7 +57,7 @@ public class Regal {
             this.produkte.add(produkt);
             this.auslastung = getAuslastung() + (produkt.getMenge() * produkt.getGroesse());
         }else {
-            throw new NoSuchElementException("Kapazität überschritten. \n Erforderliche Kapazität: "+ produkt.getGroesse()*produkt.getMenge() + "\n Vorhandene Kapazität: " + (kapazitaet-auslastung));
+            throw new NoSuchElementException("Regalkapazität überschritten. \n Erforderliche Kapazität: " + (produkt.getGroesse()*produkt.getMenge() - (kapazitaet-auslastung)) + "\n Vorhandene Kapazität: " + (kapazitaet-auslastung));
         }
     }
 

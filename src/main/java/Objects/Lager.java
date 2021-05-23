@@ -59,7 +59,7 @@ public class Lager {
         if (groesse >= auslastung+sektor.getGroesse()){
             this.sektoren.add(sektor);
         } else {
-            throw new KapazitaetErreichtException("Kapazität überschritten. \n Zusätzlich benötigte Kapazität: "+ (sektor.getGroesse() - ( groesse - auslastung)) + "\n Vorhandene Kapazität: " + (groesse-auslastung));
+            throw new KapazitaetErreichtException("Lagerkapazität überschritten. \n Zusätzlich benötigte Kapazität: " + (sektor.getGroesse() - ( groesse - auslastung)) + "\n Vorhandene Kapazität: " + (groesse-auslastung));
         }
     }
 
