@@ -1,5 +1,6 @@
 package Objects;
 
+import Exceptions.KapazitaetErreichtException;
 import Lists.ArrList;
 
 import java.util.NoSuchElementException;
@@ -45,11 +46,32 @@ public class Regal {
 
     }
 
-    public Regal (int kapazitaet) {
+    public Regal (int kapazitaet) throws KapazitaetErreichtException {
         this.kapazitaet = kapazitaet;
         this.produkte = new ArrList<Produkt>();
         this.id = regalCnt;
         regalCnt++;
+
+        System.out.printf("Zu welcher Kategorie gehört das Regal? Bitte Nummer eintippen:%n%n");
+        Kategorie[] kategorien = Kategorie.values();
+        for(Kategorie k : kategorien) {
+            System.out.println(k.ordinal() + " " + k);
+        }
+        Scanner scanner = new Scanner(System.in);
+        int index = Integer.parseInt(scanner.nextLine());
+        this.kategorie = kategorien[index];
+        scanner.close();
+        Lager[] lager = Lageruebersicht.getAlleLager();
+        ArrList<Sektor> sektoren = new ArrList<Sektor>();
+        for (int i = 0; i< lager.length;i++){
+            sektoren = lager[i].getSektoren();
+        }
+        Sektor[] alleSektoren = sektoren.toArray();
+        for (int i=0;i<alleSektoren.length;i++) {
+            if (alleSektoren[i].getKategorie() == kategorie) {
+                alleSektoren[i].addRegal(this);
+            }
+        }
     }
 
     public static int getRegalCnt() { return regalCnt; }
