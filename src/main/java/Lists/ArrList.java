@@ -1,8 +1,9 @@
 package Lists;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
-public class ArrList<E> implements IList<E> {
+public class ArrList<E> implements IList<E>, Iterable<E> {
 
     private int size = 0;
     private Object[] list;
@@ -17,6 +18,27 @@ public class ArrList<E> implements IList<E> {
     {
         list = new Object[length];
     }
+
+    class MyIterator implements Iterator<E> {
+        int pos = 0;
+        public boolean hasNext() {
+            return pos < list.length;
+        }
+
+        public E next() {
+            if(!hasNext())
+                throw new NoSuchElementException();
+            E h = (E)list[pos];
+            pos++;
+            return h;
+        }
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new MyIterator();
+    }
+
 
     @Override
     public boolean add(E o) {

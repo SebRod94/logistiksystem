@@ -28,7 +28,7 @@ public class Versand {
                                 groesse = produkt.getGroesse();
                                 vorhandeneMenge = produkt.getMenge();
                                 if(vorhandeneMenge < bestellteMenge){
-                                    throw new Exception("Kann nicht in vollem Umfang geliefert werden");
+                                    throw new Exception("Kann nicht in vollem Umfang geliefert werden.");
                                 }
                                 else{
                                     produkt.setMenge(vorhandeneMenge - bestellteMenge);
