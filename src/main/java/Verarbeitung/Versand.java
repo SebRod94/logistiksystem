@@ -6,8 +6,10 @@ import Objects.Lageruebersicht;
 import Objects.Regal;
 import Objects.Sektor;
 
+import java.util.Map;
+
 public class Versand {
-    public void Packen (int[][] orderedIds) throws Exception {
+    public void Packen (Map<Integer, Integer> orderedIds) throws Exception {
         int produktId = 0;
         int bestellteMenge = 0;
         int groesse;
@@ -15,9 +17,9 @@ public class Versand {
         int paketgroesse = 0;
         int versandkosten;
 
-        for( int i =0; i< orderedIds.length ; i++){
-                orderedIds[i][0] = produktId;
-                orderedIds[i][1] = bestellteMenge;
+        for( var key : orderedIds.keySet()){
+                produktId = key;
+                bestellteMenge = orderedIds.get(key);
 
 
             for(Lager lager : Lageruebersicht.getAlleLager())

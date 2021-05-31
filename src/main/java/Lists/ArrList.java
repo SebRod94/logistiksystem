@@ -1,6 +1,8 @@
 package Lists;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 public class ArrList<E> implements IList<E>, Iterable<E> {
@@ -85,7 +87,6 @@ public class ArrList<E> implements IList<E>, Iterable<E> {
             newList[k] = list[i];
             k++;
         }
-        list = newList;
     }
 
     @Override
