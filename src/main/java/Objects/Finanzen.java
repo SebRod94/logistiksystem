@@ -1,8 +1,9 @@
 package Objects;
 
+import Lists.ArrList;
 public class Finanzen {
 
-    double kontoguthaben;
+    double kontoguthaben = 5000.00;
     char waehrung;
 
 
@@ -22,4 +23,21 @@ public class Finanzen {
     public double getKontoguthaben(){
         return kontoguthaben;
     }
+
+
+    private void pruefeGuthaben(){
+        if (kontoguthaben >= 1000){
+            System.out.println("Kontoguthaben sehr niedrig");
+        } else if (kontoguthaben >= 2000){
+            System.out.println("Kontoguthaben niedrig");
+        } else {
+            System.out.println("Genügend Kontoguthaben vorhanden");
+        }
+
+
+    }
+
+
+
 }
+
