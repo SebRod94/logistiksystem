@@ -3,32 +3,39 @@ package Objects;
 import Exceptions.KapazitaetErreichtException;
 import Lists.ArrList;
 
-public class Nachbestellung {
+import java.util.HashMap;
+import java.util.Map;
 
-    public Nachbestellung(Produkt s, Regal regal) throws Exception {
+
+public class CheckNB {
+
+    public static void checkRM(Produkt s, Regal regal) throws Exception {
         s.setMenge(3);
         //Nachbestellung 3x das Produkt(Menge)
 
-        if (mengeBestellungVergleich() == true){
-            if (mengenvergleich(s, regal)<=3) {
-                if (platzabgleich(s, regal) == true){
-                    System.out.println("Nachbestellung ausgelöst");
-                    regal.addProdukt(s);
-                } else {
-                    throw new Exception("Platz im Regal nicht ausreichend");
-                    //Neues Regal hinzufügen?
-                }
-            } else {
-                throw new Exception("Menge hat keinen Platz im Regal");
-            }
-        } else {
-            throw new Exception("Lagerbestand für Bestellung nicht ausreichend");
-        }
 
+        if (mengenvergleich(s, regal)<=3) {
+            if (platzabgleich(s, regal) == true){
+                System.out.println("Nachbestellung ausgelöst");
+                Map<Integer, Integer> nachbest = new HashMap<Integer, Integer>();
+                nachbest.put(s.getId(), 5);
+                new Nachbestellung(nachbest);
+            }
+            else {
+                throw new Exception("Platz im Regal nicht ausreichend");
+                    //Neues Regal hinzufügen?
+            }
+        }
+        else {
+            throw new Exception("Nachbestellung nicht nötig");
+        }
     }
 
+
+
+
 // platzabgleich regal
-    private boolean platzabgleich(Produkt s, Regal regal){
+    private static boolean platzabgleich(Produkt s, Regal regal){
         if (regal.getAuslastung()<= 7){
            return true;
         }else {
@@ -36,7 +43,7 @@ public class Nachbestellung {
         }
     }
 // mengenvergleich regal
-    private int mengenvergleich(Produkt s, Regal regal){
+    private static int mengenvergleich(Produkt s, Regal regal){
         String name = s.getName();
         ArrList<Produkt> produkteregal1 = regal.getProdukte();
         Produkt[] produkteregal= produkteregal1.toArray();
@@ -49,14 +56,10 @@ public class Nachbestellung {
         menge=menge*s.getGroesse();
         return menge;
     }
-// mengenvergleich Bestellung - warte auf Methode Bestellung...
-    private boolean mengeBestellungVergleich(){
-        return true;
-    }
 
 
 // konto änderungen mit ek/vk preis
-    private double einkaufspreis(Produkt s){
+    private static double einkaufspreis(Produkt s){
         double einkaufspreis = s.getMenge()*s.getEkPreis();
         return einkaufspreis*3;
         //*3, da 3 Mengeneinheiten nachbestellt
