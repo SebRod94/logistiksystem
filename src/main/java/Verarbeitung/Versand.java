@@ -1,16 +1,12 @@
 package Verarbeitung;
 
-import Lists.ArrList;
-import Objects.Produkt;
-import Objects.Lager;
-import Objects.Lageruebersicht;
-import Objects.Regal;
-import Objects.Sektor;
+import Objects.*;
 
 import java.util.Map;
 
 public class Versand {
     public void Packen (Map<Integer, Integer> orderedIds) throws Exception {
+
         int produktId = 0;
         int bestellteMenge = 0;
         int groesse;
@@ -19,29 +15,26 @@ public class Versand {
         int versandkosten;
 
         for( var key : orderedIds.keySet()){
-                produktId = key;
-                bestellteMenge = orderedIds.get(key);
+            produktId = key;
+            bestellteMenge = orderedIds.get(key);
 
-            ArrList<Integer> i = new ArrList<>();
-            i.add(2);
-            i.add(3);
-            for(int x : i)
-            {
 
-            }
 
             for(Lager lager : Lageruebersicht.getAlleLager())
-                for(Sektor sektor : lager.getSektoren())
+                for(Sektor sektor : lager.getSektoren().toArray())
                     for(Regal regal : sektor.getRegale().toArray())
                         for(Produkt produkt : regal.getProdukte().toArray()){
                             if (produkt.getId() == produktId){
                                 groesse = produkt.getGroesse();
                                 vorhandeneMenge = produkt.getMenge();
                                 if(vorhandeneMenge < bestellteMenge){
+                                    CheckNB.checkRM( produkt,  regal);
                                     throw new Exception("Kann nicht in vollem Umfang geliefert werden.");
+
                                 }
                                 else{
                                     produkt.setMenge(vorhandeneMenge - bestellteMenge);
+                                    CheckNB.checkRM(produkt, regal);
                                 }
                                 paketgroesse += groesse * bestellteMenge;
                             }
