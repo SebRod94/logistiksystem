@@ -1,9 +1,8 @@
 package Lists;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import java.util.*;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 public class ArrList<E> implements IList<E>, Iterable<E> {
 
@@ -24,7 +23,11 @@ public class ArrList<E> implements IList<E>, Iterable<E> {
     class MyIterator implements Iterator<E> {
         int pos = 0;
         public boolean hasNext() {
-            return pos < list.length;
+            if(pos < size)
+                return true;
+
+            pos = 0;
+            return false;
         }
 
         public E next() {
@@ -140,6 +143,13 @@ public class ArrList<E> implements IList<E>, Iterable<E> {
         return (E[])list;
     }
 
+    public Stream<E> stream() {
+        return StreamSupport.stream(spliterator(), false);
+    }
+
+    public Spliterator<E> spliterator() {
+        return Spliterators.spliterator(list, 0);
+    }
     private void ensureCapacity() {
         int newSize = list.length + 10;
         list = Arrays.copyOf(list, newSize);

@@ -1,5 +1,6 @@
 package Verarbeitung;
 
+import Lists.ArrList;
 import Objects.Produkt;
 import Objects.Lager;
 import Objects.Lageruebersicht;
@@ -21,9 +22,16 @@ public class Versand {
                 produktId = key;
                 bestellteMenge = orderedIds.get(key);
 
+            ArrList<Integer> i = new ArrList<>();
+            i.add(2);
+            i.add(3);
+            for(int x : i)
+            {
+
+            }
 
             for(Lager lager : Lageruebersicht.getAlleLager())
-                for(Sektor sektor : lager.getSektoren().toArray())
+                for(Sektor sektor : lager.getSektoren())
                     for(Regal regal : sektor.getRegale().toArray())
                         for(Produkt produkt : regal.getProdukte().toArray()){
                             if (produkt.getId() == produktId){

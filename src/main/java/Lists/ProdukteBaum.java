@@ -3,6 +3,10 @@ package Lists;
 import Objects.Produkt;
 
 import java.util.NoSuchElementException;
+import java.util.Spliterator;
+import java.util.Spliterators;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 public class ProdukteBaum implements IList<Produkt> {
 
@@ -199,5 +203,61 @@ public class ProdukteBaum implements IList<Produkt> {
         }
 
         return false;
+    }
+
+
+    private ArrList<Produkt> list = new ArrList<>(this.size());
+    public ArrList<Produkt> toArrList()
+    {
+        Element it = root;
+        list.add(it.value);
+        toArrListReq(it, list);
+        return list;
+    }
+
+
+    private void toArrListReq(Element e, ArrList<Produkt> list)
+    {
+        if(e.left != null)
+        {
+            list.add(e.left.value);
+            toArrListReq(e.left, list);
+        }
+        if(e.right != null)
+        {
+            list.add(e.right.value);
+            toArrListReq(e.right, list);
+        }
+    }
+
+    private Produkt[] produkts = new Produkt[this.size()];
+    public Produkt[] toArray()
+    {
+        Element it = root;
+        produkts[0] = it.value;
+        toArrayReq(it, produkts, 1);
+        return produkts;
+    }
+
+    private void toArrayReq(Element e, Produkt[] produkts, int index)
+    {
+        if(e.left != null)
+        {
+            produkts[index++] = e.left.value;
+            toArrayReq(e.left, produkts, index);
+        }
+        if(e.right != null)
+        {
+            produkts[index++] = e.right.value;
+            toArrayReq(e.right, produkts, index);
+        }
+    }
+
+    public Stream<Produkt> stream() {
+        return StreamSupport.stream(spliterator(), false);
+    }
+
+    public Spliterator<Produkt> spliterator() {
+        return Spliterators.spliterator(this.toArray(), 0);
     }
 }
