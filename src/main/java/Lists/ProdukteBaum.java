@@ -209,6 +209,8 @@ public class ProdukteBaum implements IList<Produkt> {
     private ArrList<Produkt> list = new ArrList<>(this.size());
     public ArrList<Produkt> toArrList()
     {
+        if(root == null)
+            return null;
         Element it = root;
         list.add(it.value);
         toArrListReq(it, list);
@@ -233,6 +235,8 @@ public class ProdukteBaum implements IList<Produkt> {
     private Produkt[] produkts = new Produkt[this.size()];
     public Produkt[] toArray()
     {
+        if(root == null)
+            return null;
         Element it = root;
         produkts[0] = it.value;
         toArrayReq(it, produkts, 1);
