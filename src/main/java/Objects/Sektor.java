@@ -47,7 +47,7 @@ public class Sektor {
 
     public void addRegal(Regal regal) throws KapazitaetErreichtException {
         int auslastung=0;
-        for (Regal r : this.getRegale().toArray()){
+        for (Regal r : this.getRegale()){
             auslastung= auslastung + r.getKapazitaet();
         }
         if (groesse>auslastung+regal.getKapazitaet()) {

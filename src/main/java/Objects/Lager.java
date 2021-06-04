@@ -2,9 +2,6 @@ package Objects;
 
 import Exceptions.KapazitaetErreichtException;
 import Lists.ArrList;
-import Lists.Iterator;
-
-import java.util.NoSuchElementException;
 
 public class Lager {
 
@@ -55,7 +52,7 @@ public class Lager {
     public void addSektor(Sektor sektor) throws KapazitaetErreichtException {
         int auslastung = 0;
 
-        for (Sektor s : this.getSektoren().toArray()){
+        for (Sektor s : this.getSektoren()){
             auslastung = auslastung + s.getGroesse();
         }
         if (groesse >= auslastung+sektor.getGroesse()){

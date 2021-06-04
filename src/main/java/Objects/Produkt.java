@@ -59,14 +59,14 @@ public class Produkt {
         //Ziellager,-sektor und-regal ermitteln
         try {
             for (Lager l : alleLager) {
-                for (Sektor s : l.getSektoren().toArray()) {
+                for (Sektor s : l.getSektoren()) {
                     if (s.getKategorie() == gewaehlteKat) {
 
                         zielLagerID = l.getId();
                         zielSektorID = s.getId();
                         zielSektor = s;
                         
-                        for (Regal r : s.getRegale().toArray()) {
+                        for (Regal r : s.getRegale()) {
                             if (r.getKapazitaet() - r.getAuslastung() >= menge * groesse) {
                                 zielRegalID = r.getId();
                                 r.addProdukt(this);

@@ -21,9 +21,9 @@ public class Versand {
 
 
             for(Lager lager : Lageruebersicht.getAlleLager())
-                for(Sektor sektor : lager.getSektoren().toArray())
-                    for(Regal regal : sektor.getRegale().toArray())
-                        for(Produkt produkt : regal.getProdukte().toArray()){
+                for(Sektor sektor : lager.getSektoren())
+                    for(Regal regal : sektor.getRegale())
+                        for(Produkt produkt : regal.getProdukte()){
                             if (produkt.getId() == produktId){
                                 groesse = produkt.getGroesse();
                                 vorhandeneMenge = produkt.getMenge();

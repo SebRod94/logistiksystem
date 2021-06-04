@@ -26,10 +26,10 @@ public class Lageruebersicht {
         ProdukteBaum produkteBaum = new ProdukteBaum();
 
         for(Lager lager : alleLager)
-            for(Sektor sektor : lager.getSektoren().toArray())
-                for(Regal regal : sektor.getRegale().toArray())
+            for(Sektor sektor : lager.getSektoren())
+                for(Regal regal : sektor.getRegale())
                 {
-                    produkteBaum.addMany(regal.getProdukte().toArray());
+                    produkteBaum.addMany(regal.getProdukte());
                 }
 
         return produkteBaum;

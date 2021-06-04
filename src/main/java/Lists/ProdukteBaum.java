@@ -2,9 +2,7 @@ package Lists;
 
 import Objects.Produkt;
 
-import java.util.NoSuchElementException;
-import java.util.Spliterator;
-import java.util.Spliterators;
+import java.util.*;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -77,6 +75,12 @@ public class ProdukteBaum implements IList<Produkt> {
     }
 
     public void addMany(Produkt[] produkts)
+    {
+        for(Produkt produkt : produkts)
+            add(produkt);
+    }
+
+    public void addMany(ArrList<Produkt> produkts)
     {
         for(Produkt produkt : produkts)
             add(produkt);
@@ -260,6 +264,7 @@ public class ProdukteBaum implements IList<Produkt> {
     public Stream<Produkt> stream() {
         return StreamSupport.stream(spliterator(), false);
     }
+
 
     public Spliterator<Produkt> spliterator() {
         return Spliterators.spliterator(this.toArray(), 0);
