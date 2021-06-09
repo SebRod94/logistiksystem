@@ -133,6 +133,12 @@ public class ArrList<E> implements IList<E>, Iterable<E> {
         return false;
     }
 
+    public void replace(int toReplace, int replace)
+    {
+        list[toReplace] = list[replace];
+        list[replace] = null;
+    }
+
     public E get(int index)
     {
         return (E)list[index];
