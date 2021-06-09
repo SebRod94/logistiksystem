@@ -30,6 +30,7 @@ public class Regal {
         int index = Integer.parseInt(scanner.nextLine());
         this.kategorie = kategorien[index];
         scanner.close();
+        //Iterator
         Lager[] lager = Lageruebersicht.getAlleLager();
         ArrList<Sektor> sektoren = new ArrList<Sektor>();
         for (int i = 0; i< lager.length;i++){
@@ -61,6 +62,7 @@ public class Regal {
         int index = Integer.parseInt(scanner.nextLine());
         this.kategorie = kategorien[index];
         scanner.close();
+        //Iterator
         Lager[] lager = Lageruebersicht.getAlleLager();
         ArrList<Sektor> sektoren = new ArrList<Sektor>();
         for (int i = 0; i< lager.length;i++){
@@ -99,6 +101,27 @@ public class Regal {
     public ArrList<Produkt> getProdukte() {
         return produkte;
     }
+
+    private void swap(ArrList<Produkt> produkte, int i, int j) {
+        Produkt hilf = produkte.get(i);
+        produkte.replace(i, j);
+        produkte.set(j, hilf);
+    }
+
+    private void isort(ArrList<Produkt> produkte) {
+        for (int i = 1; i < produkte.size(); i++) {
+
+            Produkt x = produkte.get(i);
+
+            int j = i-1;
+            while (j >= 0 && produkte.get(j).getMenge() > x.getMenge()) {
+                swap(produkte, j, j + 1);
+                j--;
+            }
+            produkte.set(j+1,x);
+        }
+    }
+
 
     public void addProdukt(Produkt produkt){
         if (this.auslastung< (produkt.getMenge()*produkt.getGroesse())) {
