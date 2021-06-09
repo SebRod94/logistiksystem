@@ -14,6 +14,8 @@ public class BestBuilder {
         System.out.println("Wieviele verschiedene Waren umfasst die Bestellung?");
         int positionen = Integer.parseInt(s.nextLine());
 
+        ProdukteBaum produkteBaum = Lageruebersicht.getAllProdukts();
+
         Map<Integer, Integer> bestellung = new HashMap<Integer, Integer>();
         for (int i = 1; i == positionen; i++) {
             System.out.println("Bitte geben Sie Produkt-ID und Menge mit Leerzeichen getrennt ein. (" + i + "/" + positionen + ")");
@@ -26,7 +28,8 @@ public class BestBuilder {
                 continue;
             }
 
-            if ( /*ID nicht vorhanden*/) {
+            int finalId = id;
+            while (produkteBaum.stream().filter(produkt -> produkt.getId().equals(finalId)).findFirst().orElse(null) == null) {
                 System.out.println("Produkt-ID " + id + " existiert nicht. Möchten Sie: \n(1) die ID korrigieren \n(2) mit dem nächsten Produkt fortfahren \n (3) den Bestellvorgang abbrechen");
                 int antwort = s.nextInt();
 
@@ -41,10 +44,11 @@ public class BestBuilder {
                     default:
                         throw new NoSuchElementException("Ungültige Eingabe.");
                 }
-                s.close();
             }
             bestellung.put(id, menge);
         }
+        s.close();
         return bestellung;
     }
+
 }
