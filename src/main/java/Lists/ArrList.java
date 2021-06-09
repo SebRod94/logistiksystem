@@ -139,6 +139,11 @@ public class ArrList<E> implements IList<E>, Iterable<E> {
         list[replace] = null;
     }
 
+    public void set(int index, Object object)
+    {
+        list[index] = object;
+    }
+
     public E get(int index)
     {
         return (E)list[index];
