@@ -1,7 +1,8 @@
-package Objects;
+package Verarbeitung;
 
 import Exceptions.VorgAbgException;
 import Lists.ProdukteBaum;
+import Objects.Lageruebersicht;
 
 import java.util.HashMap;
 import java.util.Map;
