@@ -2,6 +2,7 @@ package Datenverarbeitung;
 
 import Exceptions.KapazitaetErreichtException;
 import Exceptions.KeinRegalException;
+import Exceptions.WrongNameException;
 import Lists.ArrList;
 import Objects.*;
 
@@ -21,12 +22,12 @@ public class CSVReader {
                 return (ArrList<T>) readRegal(fileName);
             else if (object.contains("sektor"))
                 return (ArrList<T>) readSektor(fileName);
-            else if (object.contains("Lager"))
+            else if (object.contains("lager"))
                 return (ArrList<T>) readLager(fileName);
             else
-                throw new FileNotFoundException("Dateiname entspricht nicht den Vorgaben!");
+                throw new WrongNameException("Dateiname entspricht nicht den Vorgaben!");
         }
-        catch (IOException | KapazitaetErreichtException | KeinRegalException e) {
+        catch (IOException | KapazitaetErreichtException | KeinRegalException | WrongNameException e) {
             e.printStackTrace();
         }
 
