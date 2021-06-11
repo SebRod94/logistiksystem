@@ -33,7 +33,7 @@ public class CSVReader {
         return null;
     }
 
-    public ArrList<Produkt> readProdukte(String fileName) throws IOException, KeinRegalException, KapazitaetErreichtException {
+    private ArrList<Produkt> readProdukte(String fileName) throws IOException, KeinRegalException, KapazitaetErreichtException {
         File file = new File(fileName);
         String line = "";
         ArrList<Produkt> produkte = new ArrList<>();
@@ -50,7 +50,7 @@ public class CSVReader {
         return produkte;
     }
 
-    public ArrList<Regal> readRegal(String fileName) throws IOException, KapazitaetErreichtException {
+    private ArrList<Regal> readRegal(String fileName) throws IOException, KapazitaetErreichtException {
         File file = new File(fileName);
         String line = "";
         ArrList<Regal> regale = new ArrList<>();
@@ -67,7 +67,7 @@ public class CSVReader {
         return regale;
     }
 
-    public ArrList<Sektor> readSektor(String fileName) throws IOException, KapazitaetErreichtException {
+    private ArrList<Sektor> readSektor(String fileName) throws IOException, KapazitaetErreichtException {
         File file = new File(fileName);
         String line = "";
         ArrList<Sektor> sektors = new ArrList<>();
@@ -85,7 +85,7 @@ public class CSVReader {
         return sektors;
     }
 
-    public ArrList<Lager> readLager(String fileName) throws IOException {
+    private ArrList<Lager> readLager(String fileName) throws IOException {
         File file = new File(fileName);
         String line = "";
         ArrList<Lager> lagers = new ArrList<>();
