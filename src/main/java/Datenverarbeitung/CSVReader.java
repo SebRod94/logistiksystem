@@ -10,7 +10,7 @@ import java.io.*;
 
 public class CSVReader {
 
-    public <T> ArrList<T> read(String fileName){
+    public static <T> ArrList<T> read(String fileName){
 
         String[] splittetPath = fileName.split("\\\\");
         String object = splittetPath[splittetPath.length-1].toLowerCase();
@@ -34,13 +34,14 @@ public class CSVReader {
         return null;
     }
 
-    private ArrList<Produkt> readProdukte(String fileName) throws IOException, KeinRegalException, KapazitaetErreichtException {
+    private static ArrList<Produkt> readProdukte(String fileName) throws IOException, KeinRegalException, KapazitaetErreichtException {
         File file = new File(fileName);
         String line = "";
         ArrList<Produkt> produkte = new ArrList<>();
 
-        FileReader inputStream = new FileReader(file);
-        BufferedReader br = new BufferedReader(inputStream);
+        FileInputStream inputStream = new FileInputStream(file);
+        InputStreamReader streamReader = new InputStreamReader(inputStream, "UTF-8");
+        BufferedReader br = new BufferedReader(streamReader);
         br.readLine();
         while ((line = br.readLine()) != null) {
             String[] values = line.split(";");
@@ -51,13 +52,14 @@ public class CSVReader {
         return produkte;
     }
 
-    private ArrList<Regal> readRegal(String fileName) throws IOException, KapazitaetErreichtException {
+    private static ArrList<Regal> readRegal(String fileName) throws IOException, KapazitaetErreichtException {
         File file = new File(fileName);
         String line = "";
         ArrList<Regal> regale = new ArrList<>();
 
-        FileReader inputStream = new FileReader(file);
-        BufferedReader br = new BufferedReader(inputStream);
+        FileInputStream inputStream = new FileInputStream(file);
+        InputStreamReader streamReader = new InputStreamReader(inputStream, "UTF-8");
+        BufferedReader br = new BufferedReader(streamReader);
         br.readLine();
         while ((line = br.readLine()) != null) {
             String[] values = line.split(";");
@@ -68,13 +70,14 @@ public class CSVReader {
         return regale;
     }
 
-    private ArrList<Sektor> readSektor(String fileName) throws IOException, KapazitaetErreichtException {
+    private static ArrList<Sektor> readSektor(String fileName) throws IOException, KapazitaetErreichtException {
         File file = new File(fileName);
         String line = "";
         ArrList<Sektor> sektors = new ArrList<>();
 
-        FileReader inputStream = new FileReader(file);
-        BufferedReader br = new BufferedReader(inputStream);
+        FileInputStream inputStream = new FileInputStream(file);
+        InputStreamReader streamReader = new InputStreamReader(inputStream, "UTF-8");
+        BufferedReader br = new BufferedReader(streamReader);
         br.readLine();
         while ((line = br.readLine()) != null) {
             String[] values = line.split(";");
@@ -86,13 +89,14 @@ public class CSVReader {
         return sektors;
     }
 
-    private ArrList<Lager> readLager(String fileName) throws IOException {
+    private static ArrList<Lager> readLager(String fileName) throws IOException {
         File file = new File(fileName);
         String line = "";
         ArrList<Lager> lagers = new ArrList<>();
 
-        FileReader inputStream = new FileReader(file);
-        BufferedReader br = new BufferedReader(inputStream);
+        FileInputStream inputStream = new FileInputStream(file);
+        InputStreamReader streamReader = new InputStreamReader(inputStream, "UTF-8");
+        BufferedReader br = new BufferedReader(streamReader);
         br.readLine();
         while ((line = br.readLine()) != null) {
             String[] values = line.split(";");
@@ -103,15 +107,16 @@ public class CSVReader {
         return lagers;
     }
 
-    private String removeUmlauts(String input)
+    private static String removeUmlauts(String input)
     {
-        input.replace("ä", "ae");
-        input.replace("ö", "oe");
-        input.replace("ü", "ue");
-        return input;
+        String output = input.replace("\u00e4", "ae")
+                .replace("\u00f6", "oe")
+                .replace("\u00fc", "ue")
+                .replace("\u00df", "ss");
+        return output;
     }
 
-    private Kategorie getKategorie(String kategorie)
+    private static Kategorie getKategorie(String kategorie)
     {
         switch (kategorie){
             case "werkzeuge":

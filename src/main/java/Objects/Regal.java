@@ -14,6 +14,13 @@ public class Regal {
     private int auslastung;
     private ArrList<Produkt> produkte;
 
+    public Regal (int kapazitaet, Kategorie kategorie) throws KapazitaetErreichtException {
+        this.kapazitaet = kapazitaet;
+        this.produkte = new ArrList<Produkt>();
+        this.id = regalCnt;
+        this.kategorie = kategorie;
+        regalCnt++;
+    }
 
     public Regal (int kapazitaet, ArrList<Produkt> produkte) throws Exception {
         this.kapazitaet = kapazitaet;
@@ -42,9 +49,6 @@ public class Regal {
                 alleSektoren[i].addRegal(this);
             }
         }
-
-
-
     }
 
     public Regal (int kapazitaet) throws KapazitaetErreichtException {

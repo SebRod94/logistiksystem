@@ -20,7 +20,7 @@ public class Sektor {
         this.kategorie = kategorie;
         this.id = sektorCnt;
 
-        Regal regal1 = new Regal(10);
+        Regal regal1 = new Regal(10, kategorie);
 
         this.addRegal(regal1);
     }

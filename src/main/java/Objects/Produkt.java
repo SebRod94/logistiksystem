@@ -27,23 +27,39 @@ public class Produkt {
             throw new IllegalArgumentException("Größe darf 4 nicht überschreiten.");
         }
 
-        this.initialize();
+        this.initialize(null);
     }
 
-    private void initialize() throws KapazitaetErreichtException, KeinRegalException {
+    public Produkt(String name, int groesse, double ekPreis, double vkPreis, int menge, Kategorie kategorie) throws IllegalArgumentException, KeinRegalException, KapazitaetErreichtException {
+        this.name = name;
+        this.ekPreis = ekPreis;
+        this.vkPreis = vkPreis;
+        this.menge = menge;
+        if (groesse<=4){
+            this.groesse = groesse;
+        } else {
+            throw new IllegalArgumentException("Größe darf 4 nicht überschreiten.");
+        }
+
+        this.initialize(kategorie);
+    }
+
+    private void initialize(Kategorie gewaehlteKat) throws KapazitaetErreichtException, KeinRegalException {
 
         //Einsortieren und ID-Ermittlung
 
         //Kategorie bestimmen
-        System.out.printf("Zu welcher Kategorie gehört das Produkt? Bitte Nummer eintippen:%n%n");
-        Kategorie[] kategorien = Kategorie.values();
-        for(Kategorie k : kategorien) {
-            System.out.println(k.ordinal() + " " + k);
+        if(gewaehlteKat == null){
+            System.out.printf("Zu welcher Kategorie gehört das Produkt? Bitte Nummer eintippen:%n%n");
+            Kategorie[] kategorien = Kategorie.values();
+            for(Kategorie k : kategorien) {
+                System.out.println(k.ordinal() + " " + k);
+            }
+            Scanner scanner = new Scanner(System.in);
+            int index = Integer.parseInt(scanner.nextLine());
+            gewaehlteKat = kategorien[index];
+            scanner.close();
         }
-        Scanner scanner = new Scanner(System.in);
-        int index = Integer.parseInt(scanner.nextLine());
-        Kategorie gewaehlteKat = kategorien[index];
-        scanner.close();
 
         //Lagerübersicht abrufen
         Lager[] alleLager = new Lager[Lageruebersicht.getAlleLager().length];
