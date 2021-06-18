@@ -74,6 +74,7 @@ public class Produkt {
 
         //Ziellager,-sektor und-regal ermitteln
         try {
+            outerloop:
             for (Lager l : alleLager) {
                 for (Sektor s : l.getSektoren()) {
                     if (s.getKategorie() == gewaehlteKat) {
@@ -87,44 +88,33 @@ public class Produkt {
                                 zielRegalID = r.getId();
                                 r.addProdukt(this);
                                 regalGefunden = true;
-                                break;
+                                break outerloop;
                             }
                         }
-                        break;
                     }
                 }
-                break;
             }
 
             //Exception, falls Regale voll
             if (regalGefunden == false) {
-                throw new KapazitaetErreichtException("Kein Regalplatz verfügbar.");
+                Scanner s = new Scanner(System.in);
+                System.out.println("Kein passendes Lager mit genügend Platz vorhanden.\nSoll ein neues Regal geschaffen werden? (y / n)");
+                String createNew = s.nextLine();
+                if (createNew.trim().toLowerCase().equals("y") ) {
+                    System.out.println("Bitte Kapazität eingeben:");
+                    int wunschKapazitaet = s.nextInt();
+                    s.close();
+                    reg = new Regal(wunschKapazitaet, gewaehlteKat);
+                    zielSektor.addRegal(reg);
+                } else {
+                    // Kein neues Regal erwünscht -> Abbruch
+                    throw new KeinRegalException("Produkt kann nicht hinzugefügt werden, da vorhandene Regale nicht genügend Platz bieten.");
+                }
+
+                //Neues Regal erschaffen: Regal-ID beziehen und einsortieren
+                zielRegalID = reg.getId();
+                reg.addProdukt(this);
             }
-
-        } catch (KapazitaetErreichtException e) {
-            e.printStackTrace();
-
-            //Bei Exception neues Regal anbieten
-            Scanner s = new Scanner(System.in);
-            String createNew = s.nextLine();
-            System.out.println("Soll ein neues Regal geschaffen werden? (y / n)");
-
-            if (createNew == "y" ) {
-                System.out.println("Bitte Kapazität eingeben:");
-                int wunschKapazitaet = s.nextInt();
-                s.close();
-                Regal r = new Regal(wunschKapazitaet);
-                zielSektor.addRegal(r);
-            } else {
-                // Kein neues Regal erwünscht -> Abbruch
-                throw new KeinRegalException("Produkt kann nicht hinzugefügt werden, da vorhandene Regale nicht genügend Platz bieten.");
-            }
-
-            //Neues Regal erschaffen: Regal-ID beziehen und einsortieren
-            zielRegalID = reg.getId();
-            reg.addProdukt(this);
-
-        } finally {
 
             // Produkt-ID-Erstellung
             prodCnt++;
@@ -142,6 +132,9 @@ public class Produkt {
             String strProduktID = strLagerID + strSektorID + strRegalID + strProdCnt;
 
             this.id = Integer.parseInt(strProduktID);
+
+        } catch (KeinRegalException e) {
+            e.printStackTrace();
         }
     }
 

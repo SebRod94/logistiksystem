@@ -3,9 +3,8 @@ Lists/ArrList.java
  Lists.ArrList$MyIterator
 Exceptions/KeinRegalException.java
  Exceptions.KeinRegalException
-Lists/ProdukteBaum.java
- Lists.ProdukteBaum
- Lists.ProdukteBaum$Element
+Objects/Kategorie.java
+ Objects.Kategorie
 Exceptions/VorgAbgException.java
  Exceptions.VorgAbgException
 Objects/Nachbestellung.java
@@ -18,18 +17,19 @@ Exceptions/KapazitaetErreichtException.java
  Exceptions.KapazitaetErreichtException
 Objects/Bestellung.java
  Objects.Bestellung
-Objects/CheckNB.java
- Objects.CheckNB
-Objects/Finanzen.java
- Objects.Finanzen
-Verarbeitung/BestBuilder.java
- Verarbeitung.BestBuilder
 Objects/Personal.java
  Objects.Personal
-Objects/Kategorie.java
- Objects.Kategorie
+Objects/Finanzen.java
+ Objects.Finanzen
+Main.java
+ Main
 Objects/Lager.java
  Objects.Lager
+Verarbeitung/BestBuilder.java
+ Verarbeitung.BestBuilder
+Lists/ProdukteBaum.java
+ Lists.ProdukteBaum
+ Lists.ProdukteBaum$Element
 Datenverarbeitung/CSVReader.java
  Datenverarbeitung.CSVReader
 Verarbeitung/Versand.java
@@ -42,5 +42,5 @@ Objects/Produkt.java
  Objects.Produkt
 Objects/Lageruebersicht.java
  Objects.Lageruebersicht
-Main.java
- Main
+Objects/CheckNB.java
+ Objects.CheckNB

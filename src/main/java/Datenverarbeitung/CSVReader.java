@@ -7,6 +7,7 @@ import Lists.ArrList;
 import Objects.*;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class CSVReader {
 
@@ -45,7 +46,8 @@ public class CSVReader {
         br.readLine();
         while ((line = br.readLine()) != null) {
             String[] values = line.split(";");
-            produkte.add(new Produkt(values[1], Integer.parseInt(values[2]), Double.parseDouble(values[3].replace(',','.')), Double.parseDouble(values[4].replace(',','.')), Integer.parseInt(values[5])));
+            Kategorie kategorie = getKategorie(removeUmlauts(values[6].trim().toLowerCase()));
+            produkte.add(new Produkt(values[1], Integer.parseInt(values[2]), Double.parseDouble(values[3].replace(',','.')), Double.parseDouble(values[4].replace(',','.')), Integer.parseInt(values[5]), kategorie));
         }
         inputStream.close();
 
@@ -76,7 +78,7 @@ public class CSVReader {
         ArrList<Sektor> sektors = new ArrList<>();
 
         FileInputStream inputStream = new FileInputStream(file);
-        InputStreamReader streamReader = new InputStreamReader(inputStream, "UTF-8");
+        InputStreamReader streamReader = new InputStreamReader(inputStream, StandardCharsets.ISO_8859_1);
         BufferedReader br = new BufferedReader(streamReader);
         br.readLine();
         while ((line = br.readLine()) != null) {
