@@ -1,0 +1,6 @@
+﻿id;name;groesse;ekPreis;vkPreis;menge;kategorie
+0;Fußball WM-Edition;1;13,13;29,99;12;Sportgeräte
+1;Fußball Standard-Version;1;7,89;24,99;8;Sportgeräte
+2;Fußballschuhe Einsteiger;1;23,67;49,99;10;Kleidung
+3;Fußballschuhe Fortgeschritten;2;32,87;59,99;5;Kleidung
+4;Fußballschuhe Profi;2;38,56;69,99;6;Kleidung
