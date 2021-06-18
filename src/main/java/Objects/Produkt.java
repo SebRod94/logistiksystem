@@ -73,6 +73,7 @@ public class Produkt {
         boolean regalGefunden = false;
 
         //Ziellager,-sektor und-regal ermitteln
+        Scanner scanner = new Scanner(System.in);
         try {
             outerloop:
             for (Lager l : alleLager) {
@@ -97,13 +98,13 @@ public class Produkt {
 
             //Exception, falls Regale voll
             if (regalGefunden == false) {
-                Scanner s = new Scanner(System.in);
+
                 System.out.println("Kein passendes Lager mit genügend Platz vorhanden.\nSoll ein neues Regal geschaffen werden? (y / n)");
-                String createNew = s.nextLine();
+                String createNew = scanner.nextLine();
                 if (createNew.trim().toLowerCase().equals("y") ) {
                     System.out.println("Bitte Kapazität eingeben:");
-                    int wunschKapazitaet = s.nextInt();
-                    s.close();
+                    int wunschKapazitaet = scanner.nextInt();
+
                     reg = new Regal(wunschKapazitaet, gewaehlteKat);
                     zielSektor.addRegal(reg);
                 } else {
