@@ -1,8 +1,13 @@
 package Objects;
 
+import Datenverarbeitung.CSVReader;
 import Exceptions.KapazitaetErreichtException;
 import Exceptions.KeinRegalException;
 
+import java.io.OutputStreamWriter;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 
@@ -98,8 +103,7 @@ public class Produkt {
 
             //Exception, falls Regale voll
             if (regalGefunden == false) {
-
-                System.out.println("Kein passendes Lager mit genügend Platz vorhanden.\nSoll ein neues Regal geschaffen werden? (y / n)");
+                System.out.println("Kein passendes Regal mit genügend Platz für " + CSVReader.removeUmlauts(this.name) + " vorhanden.\nSoll ein neues Regal geschaffen werden? (y / n)");
                 String createNew = scanner.nextLine();
                 if (createNew.trim().toLowerCase().equals("y") ) {
                     System.out.println("Bitte Kapazität eingeben:");

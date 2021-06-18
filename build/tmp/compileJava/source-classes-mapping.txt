@@ -21,10 +21,10 @@ Objects/Personal.java
  Objects.Personal
 Objects/Finanzen.java
  Objects.Finanzen
-Objects/CheckNB.java
- Objects.CheckNB
 Objects/Lager.java
  Objects.Lager
+Main.java
+ Main
 Verarbeitung/BestBuilder.java
  Verarbeitung.BestBuilder
 Lists/ProdukteBaum.java
@@ -42,5 +42,5 @@ Objects/Produkt.java
  Objects.Produkt
 Objects/Lageruebersicht.java
  Objects.Lageruebersicht
-Main.java
- Main
+Objects/CheckNB.java
+ Objects.CheckNB

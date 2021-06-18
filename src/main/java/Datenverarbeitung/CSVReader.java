@@ -109,7 +109,7 @@ public class CSVReader {
         return lagers;
     }
 
-    private static String removeUmlauts(String input)
+    public static String removeUmlauts(String input)
     {
         String output = input.replace("\u00e4", "ae")
                 .replace("\u00f6", "oe")
