@@ -65,7 +65,8 @@ public class CSVReader {
         br.readLine();
         while ((line = br.readLine()) != null) {
             String[] values = line.split(";");
-            regale.add(new Regal(Integer.parseInt(values[0].replace(',','.'))));
+            Kategorie kategorie = getKategorie(removeUmlauts(values[1].trim().toLowerCase()));
+            regale.add(new Regal(Integer.parseInt(values[0].replace(',','.')), kategorie));
         }
         inputStream.close();
 
@@ -78,7 +79,7 @@ public class CSVReader {
         ArrList<Sektor> sektors = new ArrList<>();
 
         FileInputStream inputStream = new FileInputStream(file);
-        InputStreamReader streamReader = new InputStreamReader(inputStream, StandardCharsets.ISO_8859_1);
+        InputStreamReader streamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
         BufferedReader br = new BufferedReader(streamReader);
         br.readLine();
         while ((line = br.readLine()) != null) {

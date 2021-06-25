@@ -97,6 +97,9 @@ public class Regal {
     public int getAuslastung() {
         return auslastung;
     }
+    public Kategorie getKategorie(){
+        return this.kategorie;
+    }
 
     public int getId() {
         return id;
@@ -128,7 +131,7 @@ public class Regal {
 
 
     public void addProdukt(Produkt produkt){
-        if (this.auslastung< (produkt.getMenge()*produkt.getGroesse())) {
+        if (this.kapazitaet >= (produkt.getMenge()*produkt.getGroesse())) {
             this.produkte.add(produkt);
             this.auslastung = getAuslastung() + (produkt.getMenge() * produkt.getGroesse());
         }else {

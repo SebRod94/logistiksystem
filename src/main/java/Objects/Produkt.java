@@ -3,6 +3,7 @@ package Objects;
 import Datenverarbeitung.CSVReader;
 import Exceptions.KapazitaetErreichtException;
 import Exceptions.KeinRegalException;
+import Exceptions.NotFoundException;
 
 import java.io.OutputStreamWriter;
 import java.io.PrintStream;
@@ -101,12 +102,16 @@ public class Produkt {
                 }
             }
 
+            if(zielSektor == null)
+                throw new NotFoundException("Kein Passender Sektor der Kategorie " + gewaehlteKat + " gefunden");
+
             //Exception, falls Regale voll
             if (regalGefunden == false) {
-                System.out.println("Kein passendes Regal mit genügend Platz für " + CSVReader.removeUmlauts(this.name) + " vorhanden.\nSoll ein neues Regal geschaffen werden? (y / n)");
+                System.out.println("Kein passendes Regal mit genügend Platz für " + CSVReader.removeUmlauts(this.name) +
+                        " vorhanden.\nSoll ein neues Regal der Kategorie " + gewaehlteKat + "geschaffen werden? (y / n)");
                 String createNew = scanner.nextLine();
                 if (createNew.trim().toLowerCase().equals("y") ) {
-                    System.out.println("Bitte Kapazität eingeben:");
+                    System.out.println("Bitte Kapazität eingeben (min: " + (groesse*menge) + "):");
                     int wunschKapazitaet = scanner.nextInt();
 
                     reg = new Regal(wunschKapazitaet, gewaehlteKat);
@@ -138,7 +143,7 @@ public class Produkt {
 
             this.id = Integer.parseInt(strProduktID);
 
-        } catch (KeinRegalException e) {
+        } catch (KeinRegalException | NotFoundException e) {
             e.printStackTrace();
         }
     }

@@ -104,6 +104,7 @@ public class ArrList<E> implements IList<E>, Iterable<E> {
         {
             if(list[i] == o) {
                 removedElement = list[i];
+                size--;
                 continue;
             }
             list[k++] = list[i];
@@ -116,6 +117,7 @@ public class ArrList<E> implements IList<E>, Iterable<E> {
         for (int j = 0, k = 0; j < list.length; j++) {
             if (j == i) {
                 removedElement = list[i];
+                size--;
                 continue;
             }
             list[k++] = list[j];

@@ -55,8 +55,7 @@ public class Sektor {
         } else {
             throw new KapazitaetErreichtException("Sektorkapazität überschritten. \n Zusätzlich benötigte Kapazität: " + (regal.getKapazitaet() - (groesse-auslastung)) + "\n Vorhandene Kapazität: " + (groesse-auslastung));
         }
-
-        }
+    }
 
     public void addRegale(ArrList<Regal> regale) {
         this.regale.addMany(regale);
