@@ -8,9 +8,9 @@ public class Bestellung {
     static private int orderCnt = 1;
     private int bestNr;
     private String orderTime;
-    private Map<Integer, Integer> orderedIDs;
+    private Map<String, Integer> orderedIDs;
 
-    public Bestellung (Map<Integer, Integer> orderedIDs){
+    public Bestellung (Map<String, Integer> orderedIDs){
         this.bestNr = orderCnt;
         ++orderCnt;
         this.orderTime = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date());
@@ -19,5 +19,5 @@ public class Bestellung {
 
     public int getBestNr() { return bestNr; }
     public String getOrderTime() { return orderTime; }
-    public Map<Integer, Integer> getOrderedIDs() { return orderedIDs; }
+    public Map<String, Integer> getOrderedIDs() { return orderedIDs; }
 }
