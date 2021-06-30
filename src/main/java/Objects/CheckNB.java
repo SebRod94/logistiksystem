@@ -19,8 +19,9 @@ public class CheckNB {
             nachbest.put(s.getId(), 5);
             new Nachbestellung(nachbest);
 
-            double gesamtpreis;
+            regal.editAuslastung (s.getId(), menge, true);
 
+            double gesamtpreis;
             gesamtpreis = s.getEkPreis() * menge;
             gesamtpreis = gesamtpreis * -1;
             Finanzen.finanzFluss(gesamtpreis);
