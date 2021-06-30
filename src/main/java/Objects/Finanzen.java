@@ -5,10 +5,9 @@ public class Finanzen {
 
     private static double kontoguthaben = 5000.00;
 
-    public static double finanzfluss(double gesamtpreis){
-        kontoguthaben += gesamtpreis;
+    public double finanzFluss(double gesamtpreis){
+         kontoguthaben += gesamtpreis;
         return kontoguthaben;
-
     }
 
 
