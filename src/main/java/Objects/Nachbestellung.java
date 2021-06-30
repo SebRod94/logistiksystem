@@ -8,9 +8,9 @@ public class Nachbestellung {
     static private int orderCnt = 1;
     private int NachBestNr;
     private String orderTime;
-    private Map<Integer, Integer> orderedIDs;
+    private Map<String, Integer> orderedIDs;
 
-    public Nachbestellung (Map<Integer, Integer> orderedIDs){
+    public Nachbestellung (Map<String, Integer> orderedIDs){
         this.NachBestNr = orderCnt;
         ++orderCnt;
         this.orderTime = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date());
@@ -19,5 +19,5 @@ public class Nachbestellung {
 
     public int getNachBestNr() { return NachBestNr; }
     public String getOrderTime() { return orderTime; }
-    public Map<Integer, Integer> getOrderedIDs() { return orderedIDs; }
+    public Map<String, Integer> getOrderedIDs() { return orderedIDs; }
 }

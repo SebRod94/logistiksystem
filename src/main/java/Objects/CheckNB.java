@@ -17,7 +17,7 @@ public class CheckNB {
         if (mengenvergleich(s, regal)<=3) {
             if (platzabgleich(s, regal) == true){
                 System.out.println("Nachbestellung ausgelöst");
-                Map<Integer, Integer> nachbest = new HashMap<Integer, Integer>();
+                Map<String, Integer> nachbest = new HashMap<String, Integer>();
                 nachbest.put(s.getId(), 5);
                 new Nachbestellung(nachbest);
             }
