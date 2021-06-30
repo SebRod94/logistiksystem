@@ -18,6 +18,7 @@ public class Main {
         CreateLager();
         try{
             Bestellung bestellung = new Bestellung(BestBuilder.bestBuilder());
+
         } catch (VorgAbgException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
@@ -27,6 +28,7 @@ public class Main {
             System.out.println(e.getCause());
         }
 
+        var x = Lageruebersicht.getAllProdukts().toArray();
     }
 
     private static void CreateLager()

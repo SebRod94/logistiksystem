@@ -9,26 +9,23 @@ import java.util.Map;
 
 public class CheckNB {
 
-    public static void checkRM(Produkt s, Regal regal) throws Exception {
-        s.setMenge(3);
+    public static void checkRM(Produkt s, Regal regal, int menge) throws Exception {
+
         //Nachbestellung 3x das Produkt(Menge)
 
-
-        if (mengenvergleich(s, regal)<=3) {
-            if (platzabgleich(s, regal) == true){
-                System.out.println("Nachbestellung ausgelöst");
-                Map<String, Integer> nachbest = new HashMap<String, Integer>();
-                nachbest.put(s.getId(), 5);
-                new Nachbestellung(nachbest);
-            }
-            else {
-                throw new Exception("Platz im Regal nicht ausreichend");
-                    //Neues Regal hinzufügen?
-            }
+        if (regal.getAuslastung() + s.getGroesse()*menge <= regal.getKapazitaet()){
+            System.out.println("Nachbestellung ausgelöst");
+            Map<String, Integer> nachbest = new HashMap<String, Integer>();
+            nachbest.put(s.getId(), 5);
+            new Nachbestellung(nachbest);
         }
         else {
-            throw new Exception("Nachbestellung nicht nötig");
+            throw new Exception("Platz im Regal nicht ausreichend");
+            //Neues Regal hinzufügen?
         }
+
+
+
     }
 
 

@@ -48,6 +48,7 @@ public class BestBuilder {
                 }
             }
             bestellung.put(id, menge);
+            Versand.Packen(bestellung);
         }
         s.close();
         return bestellung;

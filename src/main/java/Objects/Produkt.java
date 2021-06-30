@@ -145,7 +145,9 @@ public class Produkt {
         return menge;
     }
 
-    public void setMenge(int menge){ this.menge = menge; }
+    public void setMenge(int menge){
+        this.menge = menge;
+    }
 
     public void setId(String id) { this.id = id; }
 
