@@ -23,9 +23,6 @@ public class CheckNB {
             throw new Exception("Platz im Regal nicht ausreichend");
             //Neues Regal hinzufügen?
         }
-
-
-
     }
 
 
