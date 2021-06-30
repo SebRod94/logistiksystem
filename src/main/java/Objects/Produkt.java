@@ -5,10 +5,6 @@ import Exceptions.KapazitaetErreichtException;
 import Exceptions.KeinRegalException;
 import Exceptions.NotFoundException;
 
-import java.io.OutputStreamWriter;
-import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 
@@ -106,7 +102,7 @@ public class Produkt {
                 throw new NotFoundException("Kein Passender Sektor der Kategorie " + gewaehlteKat + " gefunden");
 
             //Exception, falls Regale voll
-            if (regalGefunden == false) {
+            if (!regalGefunden) {
                 System.out.println("Kein passendes Regal mit genügend Platz für " + CSVReader.removeUmlauts(this.name) +
                         " vorhanden.\nSoll ein neues Regal der Kategorie " + gewaehlteKat + "geschaffen werden? (y / n)");
                 String createNew = scanner.nextLine();
@@ -128,7 +124,6 @@ public class Produkt {
 
             // Produkt-ID-Erstellung
             prodCnt++;
-            Integer.toString(prodCnt);
 
             String strLagerID = zielLagerID;
             String strSektorID = zielSektorID;
