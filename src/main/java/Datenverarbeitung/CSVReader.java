@@ -103,7 +103,7 @@ public class CSVReader {
         br.readLine();
         while ((line = br.readLine()) != null) {
             String[] values = line.split(";");
-            lagers.add(new Lager(Integer.parseInt(values[0].replace(',','.')), values[1], Integer.parseInt(values[2].replace(',','.'))));
+            lagers.add(new Lager(values[0].replace(',','.'), values[1], Integer.parseInt(values[2].replace(',','.'))));
         }
         inputStream.close();
 
