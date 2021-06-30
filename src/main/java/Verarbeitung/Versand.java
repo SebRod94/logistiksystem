@@ -35,6 +35,7 @@ public class Versand {
                                 else{
                                     produkt.setMenge(vorhandeneMenge - bestellteMenge);
                                     CheckNB.checkRM(produkt, regal);
+                                    regal.editAuslastung(produktId, bestellteMenge, false);
                                 }
                                 paketgroesse += groesse * bestellteMenge;
                             }

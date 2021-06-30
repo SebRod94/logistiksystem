@@ -2,6 +2,7 @@ package Objects;
 
 import Exceptions.KapazitaetErreichtException;
 import Lists.ArrList;
+import Lists.ProdukteBaum;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -100,6 +101,7 @@ public class Regal {
     public int getAuslastung() {
         return auslastung;
     }
+
     public Kategorie getKategorie(){
         return this.kategorie;
     }
@@ -151,5 +153,12 @@ public class Regal {
     public void addProdukte(ArrList<Produkt> produkte)
     {
         this.produkte.addMany(produkte);
+    }
+
+    public void editAuslastung (String id, int menge, boolean add) {
+        ProdukteBaum produkteBaum = Lageruebersicht.getAllProdukts();
+        Produkt prod = produkteBaum.stream().filter(produkt -> produkt.getId().equals(id)).findFirst().orElse(null);
+        if (add) { this.auslastung += prod.getGroesse() * menge; }
+        else { this.auslastung -= prod.getGroesse() * menge;}
     }
 }
