@@ -18,6 +18,12 @@ public class CheckNB {
             Map<String, Integer> nachbest = new HashMap<String, Integer>();
             nachbest.put(s.getId(), 5);
             new Nachbestellung(nachbest);
+
+            double gesamtpreis;
+
+            gesamtpreis = s.getEkPreis() * menge;
+            gesamtpreis = gesamtpreis * -1;
+            Finanzen.finanzFluss(gesamtpreis);
         }
         else {
             throw new Exception("Platz im Regal nicht ausreichend");
