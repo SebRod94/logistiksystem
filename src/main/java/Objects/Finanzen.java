@@ -3,21 +3,16 @@ package Objects;
 import Lists.ArrList;
 public class Finanzen {
 
-    double kontoguthaben = 5000.00;
-    char waehrung;
+    private static double kontoguthaben = 5000.00;
 
-
-
-    public void setWaehrung(char waehrung){
-        this.waehrung = waehrung;
+    public double finanzFluss(double gesamtpreis){
+         kontoguthaben += gesamtpreis;
+        return kontoguthaben;
     }
 
-    public double getWaehrung(){
-        return waehrung;
-    }
 
     public void setKontoguthaben(double kontoguthaben){
-        this.kontoguthaben = kontoguthaben;
+        kontoguthaben = kontoguthaben;
     }
 
     public double getKontoguthaben(){

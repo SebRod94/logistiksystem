@@ -15,7 +15,9 @@ public class Bestellung {
         ++orderCnt;
         this.orderTime = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date());
         this.orderedIDs = orderedIDs;
+
     }
+
 
     public int getBestNr() { return bestNr; }
     public String getOrderTime() { return orderTime; }

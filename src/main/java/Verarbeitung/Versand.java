@@ -1,6 +1,7 @@
 package Verarbeitung;
 
 import Objects.*;
+import Lists.ProdukteBaum;
 
 import java.util.Map;
 
@@ -12,7 +13,8 @@ public class Versand {
         int groesse;
         int vorhandeneMenge;
         int paketgroesse = 0;
-        int versandkosten;
+        int versandkosten = 0;
+        double gesamtpreis = 0;
 
         for( var key : orderedIds.keySet()){
             produktId = String.valueOf(key);
@@ -40,6 +42,11 @@ public class Versand {
                                 paketgroesse += groesse * bestellteMenge;
                             }
                         }
+
+            ProdukteBaum produkteBaum = Lageruebersicht.getAllProdukts();
+            String Id = key.toString();
+            Produkt prod = produkteBaum.stream().filter(produkt -> produkt.getId().equals(Id)).findFirst().orElse(null);
+            gesamtpreis = (prod.getEkPreis() * bestellteMenge);
         }
         if (paketgroesse <= 10) {
             versandkosten = 5;
@@ -54,6 +61,8 @@ public class Versand {
             versandkosten = 55;
 
         }
+        gesamtpreis += versandkosten;
 
     }
+
 }
