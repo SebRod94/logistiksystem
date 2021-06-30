@@ -104,7 +104,7 @@ public class Produkt {
             //Exception, falls Regale voll
             if (!regalGefunden) {
                 System.out.println("Kein passendes Regal mit genügend Platz für " + CSVReader.removeUmlauts(this.name) +
-                        " vorhanden.\nSoll ein neues Regal der Kategorie " + gewaehlteKat + "geschaffen werden? (y / n)");
+                        " vorhanden.\nSoll ein neues Regal der Kategorie " + gewaehlteKat + " geschaffen werden? (y / n)");
                 String createNew = scanner.nextLine();
                 if (createNew.trim().toLowerCase().equals("y") ) {
                     System.out.println("Bitte Kapazität eingeben (min: " + (groesse*menge) + "):");
