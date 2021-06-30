@@ -6,7 +6,7 @@ import java.util.*;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-public class ProdukteBaum implements IList<Produkt> {
+public class ProdukteBaum<T extends Comparable<T>> implements IList<Produkt> {
 
     Element root;
 
@@ -50,7 +50,7 @@ public class ProdukteBaum implements IList<Produkt> {
         {
             if(e.value == it.value)
                 return true;
-            else if(e.value.getId() < it.value.getId())
+            else if(e.value.getId().compareTo(it.value.getId()) < 0)
             {
                 if(it.left == null)
                 {
@@ -107,7 +107,7 @@ public class ProdukteBaum implements IList<Produkt> {
 
         Element it = root;
         while (it != null) {
-            if (produkt.getId() < it.value.getId()) {
+            if (it.value.getId().compareTo(it.value.getId()) < 0) {
                 if (it.left != null && it.left.value.getId() == produkt.getId())
                     return removeElement(it, it.left);
                 it = it.left;
@@ -170,7 +170,7 @@ public class ProdukteBaum implements IList<Produkt> {
         while (it != null) {
             if (e.value.getId() == it.value.getId())
                 return false;
-            else if (e.value.getId() < it.value.getId()) {
+            else if (e.value.getId().compareTo(it.value.getId()) < 0) {
                 if (it.left == null) {
                     it.left = e;
                     return true;
@@ -198,7 +198,7 @@ public class ProdukteBaum implements IList<Produkt> {
         {
             if(produkt == it.value)
                 return true;
-            else if(produkt.getId() < it.value.getId())
+            else if(produkt.getId().compareTo(it.value.getId()) < 0)
             {
                 it = it.left;
             }
