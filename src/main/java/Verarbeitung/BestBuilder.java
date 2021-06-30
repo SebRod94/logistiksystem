@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class BestBuilder {
-    public static Map<Integer, Integer> bestBuilder() throws VorgAbgException, NoSuchElementException {
+    public static Map<Integer, Integer> bestBuilder() throws VorgAbgException, NoSuchElementException, Exception {
         Scanner s = new Scanner(System.in);
         System.out.println("Wie viele verschiedene Waren umfasst die Bestellung?");
         int positionen = Integer.parseInt(s.nextLine());
