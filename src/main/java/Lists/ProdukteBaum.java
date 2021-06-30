@@ -6,7 +6,7 @@ import java.util.*;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-public class ProdukteBaum<T extends Comparable<T>> implements IList<Produkt> {
+public class ProdukteBaum<T extends Comparable<Produkt>> implements IList<Produkt> {
 
     Element root;
 
