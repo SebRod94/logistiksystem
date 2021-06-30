@@ -1,6 +1,7 @@
 package Objects;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Personal {
 
@@ -38,13 +39,13 @@ public class Personal {
         return stelle;
     }
 
-    /** Map
-    public map(){
-        Map<Person,Person> vorgesetzte = new HashMap<>();
+    //Map
+    public void map(){
+        Map<String, String> vorgesetzte = new HashMap<>();
 
-        Person chef = new Person("Maria");
+        String chef = "Maria";
     }
 
-    */
+
 }
 
