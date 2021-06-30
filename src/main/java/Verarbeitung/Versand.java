@@ -7,7 +7,7 @@ import java.util.Map;
 public class Versand {
     public void Packen (Map<Integer, Integer> orderedIds) throws Exception {
 
-        int produktId = 0;
+        String produktId = "0";
         int bestellteMenge = 0;
         int groesse;
         int vorhandeneMenge;
@@ -15,7 +15,7 @@ public class Versand {
         int versandkosten;
 
         for( var key : orderedIds.keySet()){
-            produktId = key;
+            produktId = String.valueOf(key);
             bestellteMenge = orderedIds.get(key);
 
 
