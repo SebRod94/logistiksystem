@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class Produkt {
 
     private static int prodCnt = 1;
-    private int id;
+    private String id;
     private String name;
     private int groesse;
     private double ekPreis;
@@ -128,6 +128,7 @@ public class Produkt {
 
             // Produkt-ID-Erstellung
             prodCnt++;
+            Integer.toString(prodCnt);
 
             String strLagerID = Integer.toString(zielLagerID);
             String strSektorID = Integer.toString(zielSektorID);
@@ -141,7 +142,7 @@ public class Produkt {
 
             String strProduktID = strLagerID + strSektorID + strRegalID + strProdCnt;
 
-            this.id = Integer.parseInt(strProduktID);
+
 
         } catch (KeinRegalException | NotFoundException e) {
             e.printStackTrace();
@@ -152,29 +153,17 @@ public class Produkt {
         return menge;
     }
 
-    public void setMenge(int menge){
-        this.menge = menge;
-    }
+    public void setMenge(int menge){ this.menge = menge; }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public void setId(String id) { this.id = id; }
 
-    public Integer getId() {
-        return id;
-    }
+    public String getId() { return id; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
-    public void setGroesse(int groesse) {
-        this.groesse = groesse;
-    }
+    public void setGroesse(int groesse) { this.groesse = groesse; }
 
     public int getGroesse() {
         return groesse;
