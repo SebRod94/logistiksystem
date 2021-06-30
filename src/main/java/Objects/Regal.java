@@ -17,7 +17,10 @@ public class Regal {
     public Regal (int kapazitaet, Kategorie kategorie) throws KapazitaetErreichtException {
         this.kapazitaet = kapazitaet;
         this.produkte = new ArrList<Produkt>();
-        this.id = Integer.toString(regalCnt);
+        if(regalCnt < 10)
+            this.id = "0"+regalCnt;
+        else
+            this.id = Integer.toString(regalCnt);
         this.kategorie = kategorie;
         regalCnt++;
     }

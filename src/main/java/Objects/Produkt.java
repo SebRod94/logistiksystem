@@ -134,7 +134,10 @@ public class Produkt {
             String strSektorID = zielSektorID;
             String strRegalID = zielRegalID;
 
-            String strProduktID = strLagerID + strSektorID + strRegalID + Integer.toString(prodCnt);
+            if(prodCnt < 10)
+                id = strLagerID + strSektorID + strRegalID + "0" + prodCnt;
+            else
+                id = strLagerID + strSektorID + strRegalID + prodCnt;
 
 
 
