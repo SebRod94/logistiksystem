@@ -5,12 +5,12 @@ import Lists.ArrList;
 
 public class Lager {
 
-    private int id;
+    private String id;
     private String name;
     private int groesse;
     private ArrList<Sektor> sektoren;
 
-    public Lager(int id, String name, int groesse){
+    public Lager(String id, String name, int groesse){
         this.id = id;
         this.name = name;
         this.groesse = groesse;
@@ -25,13 +25,13 @@ public class Lager {
         }
     }
 
-    public Lager(int id, String name, int groesse, ArrList<Sektor> sektors){
+    public Lager(String id, String name, int groesse, ArrList<Sektor> sektors){
         new Lager(id, name, groesse);
 
         this.sektoren.addMany(sektors);
     }
 
-    public int getId() { return id ;}
+    public String getId() { return id ;}
 
     public void setName(String name) { this.name = name; }
 
