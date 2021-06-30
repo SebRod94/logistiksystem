@@ -179,6 +179,7 @@ public class ProdukteBaum implements IList<Produkt> {
             } else {
                 if (it.right == null) {
                     it.right = e;
+
                     return true;
                 } else
                     it = it.right;
@@ -210,9 +211,10 @@ public class ProdukteBaum implements IList<Produkt> {
     }
 
 
-    private ArrList<Produkt> list = new ArrList<>(this.size());
+    private ArrList<Produkt> list;
     public ArrList<Produkt> toArrList()
     {
+        list = new ArrList<Produkt>(this.size());
         if(root == null)
             return null;
         Element it = root;
@@ -236,9 +238,10 @@ public class ProdukteBaum implements IList<Produkt> {
         }
     }
 
-    private Produkt[] produkts = new Produkt[this.size()];
+    private Produkt[] produkts;
     public Produkt[] toArray()
     {
+        produkts = new Produkt[this.size()];
         if(root == null)
             return null;
         Element it = root;
