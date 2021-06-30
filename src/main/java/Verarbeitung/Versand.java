@@ -46,7 +46,7 @@ public class Versand {
             ProdukteBaum produkteBaum = Lageruebersicht.getAllProdukts();
             String Id = key.toString();
             Produkt prod = produkteBaum.stream().filter(produkt -> produkt.getId().equals(Id)).findFirst().orElse(null);
-            gesamtpreis = (prod.getEkPreis() * bestellteMenge);
+            gesamtpreis = (prod.getVkPreis() * bestellteMenge);
         }
         if (paketgroesse <= 10) {
             versandkosten = 5;
@@ -62,7 +62,7 @@ public class Versand {
 
         }
         gesamtpreis += versandkosten;
-
+        Finanzen.finanzfluss(gesamtpreis);
     }
 
 }
