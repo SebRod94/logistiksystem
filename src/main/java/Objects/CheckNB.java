@@ -2,7 +2,6 @@ package Objects;
 
 import Exceptions.KapazitaetErreichtException;
 import Lists.ArrList;
-import Lists.ProdukteBaum;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,13 +18,6 @@ public class CheckNB {
             Map<String, Integer> nachbest = new HashMap<String, Integer>();
             nachbest.put(s.getId(), 5);
             new Nachbestellung(nachbest);
-
-            double gesamtpreis;
-
-            String Id = s.getId();
-            gesamtpreis = (s.getEkPreis() * menge);
-            gesamtpreis = gesamtpreis * -1;
-            Finanzen.finanzfluss(gesamtpreis);
         }
         else {
             throw new Exception("Platz im Regal nicht ausreichend");
