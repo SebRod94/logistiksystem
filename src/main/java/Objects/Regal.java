@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Regal {
     private static int regalCnt = 1;
-    private int id;
+    private String id;
     private Kategorie kategorie;
     private int kapazitaet;
     private int auslastung;
@@ -17,7 +17,7 @@ public class Regal {
     public Regal (int kapazitaet, Kategorie kategorie) throws KapazitaetErreichtException {
         this.kapazitaet = kapazitaet;
         this.produkte = new ArrList<Produkt>();
-        this.id = regalCnt;
+        this.id = Integer.toString(regalCnt);
         this.kategorie = kategorie;
         regalCnt++;
     }
@@ -25,7 +25,7 @@ public class Regal {
     public Regal (int kapazitaet, ArrList<Produkt> produkte) throws Exception {
         this.kapazitaet = kapazitaet;
         this.produkte = produkte;
-        this.id = regalCnt;
+        this.id = Integer.toString(regalCnt);
         regalCnt++;
 
         System.out.printf("Zu welcher Kategorie gehört das Regal? Bitte Nummer eintippen:%n%n");
@@ -54,7 +54,7 @@ public class Regal {
     public Regal (int kapazitaet) throws KapazitaetErreichtException {
         this.kapazitaet = kapazitaet;
         this.produkte = new ArrList<Produkt>();
-        this.id = regalCnt;
+        this.id = Integer.toString(regalCnt);
         regalCnt++;
 
         System.out.printf("Zu welcher Kategorie gehört das Regal? Bitte Nummer eintippen:%n%n");
@@ -101,7 +101,7 @@ public class Regal {
         return this.kategorie;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

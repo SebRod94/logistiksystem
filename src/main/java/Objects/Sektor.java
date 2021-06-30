@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Sektor {
 
     private static int sektorCnt = 1;
-    private int id;
+    private String id;
     private int groesse;
     private Kategorie kategorie;
     private ArrList<Regal> regale;
@@ -18,14 +18,14 @@ public class Sektor {
         this.groesse = groesse;
         this.regale = new ArrList<>();
         this.kategorie = kategorie;
-        this.id = sektorCnt;
+        this.id = Integer.toString(sektorCnt);
 
         Regal regal1 = new Regal(10, kategorie);
 
         this.addRegal(regal1);
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

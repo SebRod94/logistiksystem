@@ -71,10 +71,10 @@ public class Produkt {
         Lager[] alleLager = new Lager[Lageruebersicht.getAlleLager().length];
         alleLager = Lageruebersicht.getAlleLager();
 
-        int zielLagerID = 0;
-        int zielSektorID = 0;
+        String zielLagerID = "0";
+        String zielSektorID = "0";
         Sektor zielSektor = null;
-        int zielRegalID = 0;
+        String zielRegalID = "0";
         Regal reg = null;
         boolean regalGefunden = false;
 
@@ -130,17 +130,11 @@ public class Produkt {
             prodCnt++;
             Integer.toString(prodCnt);
 
-            String strLagerID = Integer.toString(zielLagerID);
-            String strSektorID = Integer.toString(zielSektorID);
-            String strRegalID = Integer.toString(zielRegalID);
-            String strProdCnt;
-            if (prodCnt < 10) {
-                strProdCnt = "0" + Integer.toString(prodCnt);
-            } else {
-                strProdCnt = Integer.toString(prodCnt);
-            }
+            String strLagerID = zielLagerID;
+            String strSektorID = zielSektorID;
+            String strRegalID = zielRegalID;
 
-            String strProduktID = strLagerID + strSektorID + strRegalID + strProdCnt;
+            String strProduktID = strLagerID + strSektorID + strRegalID + Integer.toString(prodCnt);
 
 
 
