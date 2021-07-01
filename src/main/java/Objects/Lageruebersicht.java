@@ -1,7 +1,10 @@
 package Objects;
 
 import Exceptions.KapazitaetErreichtException;
+import Lists.ArrList;
 import Lists.ProdukteBaum;
+
+import java.util.Arrays;
 
 public class Lageruebersicht {
     private static Lager[] alleLager = new Lager[3];
@@ -20,6 +23,12 @@ public class Lageruebersicht {
     }
 
     public static Lager[] getAlleLager(){ return alleLager; }
+
+    public static ArrList<Sektor> getAllSektors(){
+        ArrList<Sektor> sektors = new ArrList<>();
+        Arrays.stream(alleLager).forEach(lager -> sektors.addMany(lager.getSektoren()));
+        return sektors;
+    }
 
     public static ProdukteBaum getAllProdukts()
     {

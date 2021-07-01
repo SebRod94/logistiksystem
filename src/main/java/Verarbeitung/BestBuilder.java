@@ -4,6 +4,7 @@ import Exceptions.VorgAbgException;
 import Lists.ProdukteBaum;
 import Objects.Lageruebersicht;
 
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -11,11 +12,27 @@ import java.util.Scanner;
 
 public class BestBuilder {
     public static Map<String, Integer> bestBuilder() throws VorgAbgException, NoSuchElementException, Exception {
+        ProdukteBaum produkteBaum = Lageruebersicht.getAllProdukts();
+        File produkteuebersichtFile = new File("Produkteuebersicht.csv");
+        produkteuebersichtFile.createNewFile();
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(produkteuebersichtFile)));
+        bw.write("Name;ID;Vorhandene Menge");
+        bw.newLine();
+        produkteBaum.stream().forEach(produkt -> {
+            try {
+                bw.write(produkt.getName() + ";" + produkt.getId() + ";" + produkt.getMenge());
+                bw.newLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        bw.close();
+
         Scanner s = new Scanner(System.in);
         System.out.println("Wie viele verschiedene Waren umfasst die Bestellung?");
         int positionen = Integer.parseInt(s.nextLine());
 
-        ProdukteBaum produkteBaum = Lageruebersicht.getAllProdukts();
+
 
         Map<String, Integer> bestellung = new HashMap<String, Integer>();
         for (int i = 1; i == positionen; i++) {

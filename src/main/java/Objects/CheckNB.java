@@ -1,68 +1,67 @@
 package Objects;
 
 import Exceptions.KapazitaetErreichtException;
+import Exceptions.KeinRegalException;
+import Exceptions.NotFoundException;
 import Lists.ArrList;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 
 public class CheckNB {
 
-    public static void checkRM(Produkt s, Regal regal, int menge) throws Exception {
+    public static void checkRM(Produkt produkt, Regal regal, int menge) throws Exception {
 
-        //Nachbestellung 3x das Produkt(Menge)
-
-        if (regal.getAuslastung() + s.getGroesse()*menge <= regal.getKapazitaet()){
-            System.out.println("Nachbestellung ausgelöst");
-            Map<String, Integer> nachbest = new HashMap<String, Integer>();
-            nachbest.put(s.getId(), 5);
-            new Nachbestellung(nachbest);
-
-            regal.editAuslastung (s.getId(), menge, true);
-
-            double gesamtpreis;
-            gesamtpreis = s.getEkPreis() * menge;
-            gesamtpreis = gesamtpreis * -1;
-            Finanzen.finanzFluss(gesamtpreis);
+        if (regal.getAuslastung() + produkt.getGroesse()*menge <= regal.getKapazitaet()){
+            nachbestellen(produkt, regal, menge);
         }
         else {
-            throw new Exception("Platz im Regal nicht ausreichend");
-            //Neues Regal hinzufügen?
-        }
-    }
+            System.out.println("Platz im Regal nicht ausreichend");
+            System.out.println("Soll ein neues Regal der Kategorie " + regal.getKategorie() + " geschaffen werden? (y / n)");
+            Scanner scanner = new Scanner(System.in);
 
+            if (scanner.next().trim().toLowerCase().equals("y") ) {
+                System.out.println("Bitte Kapazität eingeben (min: " + (produkt.getGroesse()*menge) + "):");
+                int wunschKapazitaet = scanner.nextInt();
 
+                Sektor zielSektor = null;
+                for(Sektor sek : Lageruebersicht.getAllSektors())
+                    if(sek.getRegale().stream().filter(r -> r.getId() == regal.getId()).findFirst().orElse(null) != null){
+                        zielSektor = sek;
+                        break;
+                    }
 
+                if(zielSektor == null)
+                    throw new NotFoundException("Kein Passender Sektor der Kategorie " + regal.getKategorie() + " gefunden");
 
-// platzabgleich regal
-    private static boolean platzabgleich(Produkt s, Regal regal){
-        if (regal.getAuslastung()<= 7){
-           return true;
-        }else {
-            return false;
-        }
-    }
-// mengenvergleich regal
-    private static int mengenvergleich(Produkt s, Regal regal){
-        String name = s.getName();
-        ArrList<Produkt> produkteregal1 = regal.getProdukte();
-        Produkt[] produkteregal= produkteregal1.toArray();
-        int menge = 0;
-        for (int i=0; i< produkteregal.length;i++){
-            if (produkteregal[i].getName().equals(name)){
-                menge += produkteregal[i].getMenge();
+                Regal newRegal = new Regal(wunschKapazitaet, regal.getKategorie());
+                zielSektor.addRegal(newRegal);
+                nachbestellen(produkt, newRegal, menge);
+
             }
+            else
+                throw new KeinRegalException("Produkt kann nicht hinzugefügt werden, da vorhandene Regale nicht genügend Platz bieten.");
+
+
         }
-        menge=menge*s.getGroesse();
-        return menge;
     }
 
 
-// konto änderungen mit ek/vk preis
-    private static double einkaufspreis(Produkt s){
-        double einkaufspreis = s.getMenge()*s.getEkPreis();
-        return einkaufspreis*3;
-        //*3, da 3 Mengeneinheiten nachbestellt
+    private static void nachbestellen(Produkt produkt, Regal regal, int menge)
+    {
+        System.out.println("Nachbestellung ausgelöst");
+        Map<String, Integer> nachbest = new HashMap<String, Integer>();
+        nachbest.put(produkt.getId(), 5);
+        new Nachbestellung(nachbest);
+
+        regal.editAuslastung (produkt.getId(), menge, true);
+
+        double gesamtpreis;
+        gesamtpreis = produkt.getEkPreis() * menge;
+        gesamtpreis = gesamtpreis * -1;
+        Finanzen.finanzFluss(gesamtpreis);
     }
+
 }

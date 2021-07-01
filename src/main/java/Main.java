@@ -28,7 +28,6 @@ public class Main {
             System.out.println(e.getCause());
         }
 
-        var x = Lageruebersicht.getAllProdukts().toArray();
     }
 
     private static void CreateLager()

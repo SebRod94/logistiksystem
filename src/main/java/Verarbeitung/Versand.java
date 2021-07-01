@@ -30,14 +30,15 @@ public class Versand {
                                 groesse = produkt.getGroesse();
                                 vorhandeneMenge = produkt.getMenge();
                                 if(vorhandeneMenge < bestellteMenge){
-                                    CheckNB.checkRM( produkt,  regal, vorhandeneMenge - bestellteMenge);
+                                    CheckNB.checkRM( produkt,  regal, vorhandeneMenge - bestellteMenge + 3);
                                     throw new Exception("Kann nicht in vollem Umfang geliefert werden.");
                                 }
                                 else{
                                     produkt.setMenge(vorhandeneMenge - bestellteMenge);
-                                    if(produkt.getMenge() < 3)
-                                        CheckNB.checkRM(produkt, regal, vorhandeneMenge - bestellteMenge);
                                     regal.editAuslastung(produktId, bestellteMenge, false);
+                                    if(produkt.getMenge() < 3)
+                                        CheckNB.checkRM(produkt, regal, 3 - produkt.getMenge());
+
                                 }
                                 paketgroesse += groesse * bestellteMenge;
                             }
