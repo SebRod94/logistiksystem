@@ -153,7 +153,7 @@ public class ArrList<E> implements IList<E>, Iterable<E> {
 
     public E[] toArray()
     {
-        return (E[])list;
+        return (E[])Arrays.copyOf(list, size);
     }
 
     public Stream<E> stream() {
