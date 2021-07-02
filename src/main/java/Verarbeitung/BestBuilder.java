@@ -13,20 +13,7 @@ import java.util.Scanner;
 public class BestBuilder {
     public static Map<String, Integer> bestBuilder() throws VorgAbgException, NoSuchElementException, Exception {
         ProdukteBaum produkteBaum = Lageruebersicht.getAllProdukts();
-        File produkteuebersichtFile = new File("Produkteuebersicht.csv");
-        produkteuebersichtFile.createNewFile();
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(produkteuebersichtFile)));
-        bw.write("Name;ID;Vorhandene Menge");
-        bw.newLine();
-        produkteBaum.stream().forEach(produkt -> {
-            try {
-                bw.write(produkt.getName() + ";" + produkt.getId() + ";" + produkt.getMenge());
-                bw.newLine();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        bw.close();
+        Lageruebersicht.productOverview();
 
         Scanner s = new Scanner(System.in);
         System.out.println("Wie viele verschiedene Waren umfasst die Bestellung?");

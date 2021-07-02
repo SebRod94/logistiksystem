@@ -2,8 +2,10 @@ package Objects;
 
 import Exceptions.KapazitaetErreichtException;
 import Lists.ArrList;
+import Lists.ProdSort;
 import Lists.ProdukteBaum;
 
+import java.io.*;
 import java.util.Arrays;
 
 public class Lageruebersicht {
@@ -42,5 +44,33 @@ public class Lageruebersicht {
                 }
 
         return produkteBaum;
+    }
+
+    public static void productOverview () throws IOException{
+
+        ArrList<Produkt> alleProd = new ArrList<>();
+
+        for(Lager lager : alleLager)
+            for(Sektor sektor : lager.getSektoren())
+                for(Regal regal : sektor.getRegale())
+                {
+                    alleProd.addMany(regal.getProdukte());
+                }
+
+        Produkt[] prodOverview = alleProd.toArray();
+
+        ProdSort.ssort(prodOverview);
+
+        File produkteuebersichtFile = new File("Produkteuebersicht.csv");
+        produkteuebersichtFile.createNewFile();
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(produkteuebersichtFile)));
+        bw.write("Name;ID;Vorhandene Menge");
+        bw.newLine();
+
+        for (Produkt p : prodOverview) {
+            bw.write(p.getName() + ";" + p.getId() + ";" + p.getMenge());
+            bw.newLine();
+        }
+        bw.close();
     }
 }
