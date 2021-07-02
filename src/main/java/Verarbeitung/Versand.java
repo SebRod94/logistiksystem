@@ -21,7 +21,7 @@ public class Versand {
             bestellteMenge = orderedIds.get(key);
 
 
-
+            outerloop:
             for(Lager lager : Lageruebersicht.getAlleLager())
                 for(Sektor sektor : lager.getSektoren())
                     for(Regal regal : sektor.getRegale())
@@ -41,6 +41,7 @@ public class Versand {
 
                                 }
                                 paketgroesse += groesse * bestellteMenge;
+                                break outerloop;
                             }
                         }
 
